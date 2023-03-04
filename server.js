@@ -3,6 +3,7 @@ import colors from "colors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from './config/db.js';    // notice it's 'db.js' and not 'db' as we're using import/export instead of 'require' we also need to specify the file extension here
+import authRoutes from "./routes/authRoute.js";
 
 
 //Configure env
@@ -18,6 +19,9 @@ const app = express();
 
 app.use(express.json());  // enabling json so that we can send json data with 'req/res' (instead of 'body-parser')
 app.use(morgan("dev"));   // tells us abou the type of 'request (GET/POST etc.)' status code and how much time it took (in ms) for execution, in the terminal. Useful for debugging and will be removed in production
+
+//Routes
+app.use("/api/v1/auth", authRoutes);
 
 
 //Rest API
