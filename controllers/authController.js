@@ -108,6 +108,13 @@ export const loginController = async (req, res) => {
       });
     }
 
+    //JWT token creation
+    const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
+    
+
   } catch (error) {
     console.log(error);
     
