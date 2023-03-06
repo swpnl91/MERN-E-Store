@@ -89,11 +89,22 @@ export const loginController = async (req, res) => {
     //Check whether user exists or not
     const user = await userModel.findOne({ email });
     
-    // If user doesn't exist
+    //If user doesn't exist
     if (!user) {
       return res.status(404).send({
         success: false,
         message: "Email is not registered",
+      });
+    }
+
+    //Check whether password matches or not
+    const match = await comparePassword(password, user.password);
+    
+    //If password doesn't match
+    if (!match) {
+      return res.status(200).send({
+        success: false,
+        message: "Invalid Password",
       });
     }
 
