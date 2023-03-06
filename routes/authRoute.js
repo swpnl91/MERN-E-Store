@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  loginController,
   registerController,
   
 } from "../controllers/authController.js";
@@ -14,7 +15,10 @@ const router = express.Router();     // we need it if we're carrying out the rou
 //ROUTING
 
 //Routing for Registering; Method - POST
-router.post("/register", registerController);     // 'registerController' is callback function from 'controllers' folder  
+router.post("/register", registerController);     // 'registerController' is callback function from 'controllers' folder 
+
+//Routing for Login; Method - POST
+router.post("/login", loginController);
 
 
 export default router;
