@@ -76,6 +76,16 @@ export const registerController = async (req, res) => {
 export const loginController = async (req, res) => {
   try {
     
+    const { email, password } = req.body;
+
+    //Validation checks
+    if (!email || !password) {
+      return res.status(404).send({
+        success: false,
+        message: "Invalid email/password",
+      });
+    }
+
   } catch (error) {
     console.log(error);
     
