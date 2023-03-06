@@ -5,7 +5,7 @@ import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
 
 
-
+//POST Register
 export const registerController = async (req, res) => {
   try {
 
@@ -69,5 +69,15 @@ export const registerController = async (req, res) => {
       message: "Registration Failed",
       error,
     });
+  }
+};
+
+//POST Login
+export const loginController = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+    
   }
 };
