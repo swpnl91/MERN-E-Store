@@ -108,7 +108,7 @@ export const loginController = async (req, res) => {
       });
     }
 
-    // JWT token creation
+    // JWT (token) creation
     const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",        // expires in 1 day
     });
@@ -116,7 +116,7 @@ export const loginController = async (req, res) => {
     res.status(200).send({
       success: true,
       message: "Successfully Logged in",
-      user: {                         // everything is being passed to the middleware
+      user: {                         
         _id: user._id,
         name: user.name,
         email: user.email,

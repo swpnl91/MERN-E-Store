@@ -12,6 +12,7 @@ import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 const router = express.Router();     // we need it if we're carrying out the routing logic in a separate file 
 
 
+
 // ROUTING
 
 // Routing for Registering; Method - POST
@@ -21,7 +22,7 @@ router.post("/register", registerController);     // 'registerController' is cal
 router.post("/login", loginController);
 
 // Test routes
-router.get("/test", requireSignIn, isAdmin, testController);     // The 'next()' in 'requireSignIn'/'isAdmin' makes it execute 'testController'
+router.get("/test", requireSignIn, isAdmin, testController);     // The 'next()' in 'requireSignIn'/'isAdmin' (middlewares) makes it execute 'testController'
 
 
 export default router;
