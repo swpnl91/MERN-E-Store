@@ -5,13 +5,13 @@ import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
 
 
-//POST Register
+// POST Register
 export const registerController = async (req, res) => {
   try {
 
     const { name, email, password, phone, address, answer } = req.body;
 
-    //Validations
+    // Validations
     if (!name) {
       return res.send({ error: "Name is Required" });
     }
@@ -31,10 +31,10 @@ export const registerController = async (req, res) => {
       return res.send({ message: "Answer is Required" });
     }
 
-    //Check whether user exists
+    // Check whether user exists
     const existingUser = await userModel.findOne({ email });
 
-    //If user already exists
+    // If user already exists
     if (existingUser) {
       return res.status(200).send({
         success: false,
@@ -42,10 +42,10 @@ export const registerController = async (req, res) => {
       });
     }
 
-    //Registering user by hashing the password
+    // Registering user by hashing the password
     const hashedPassword = await hashPassword(password);     // 'hashpassword' is the function
     
-    //Saving the user to DB
+    // Saving the user to DB
     const user = await new userModel({
       name,
       email,
@@ -72,13 +72,13 @@ export const registerController = async (req, res) => {
   }
 };
 
-//POST Login
+// POST Login
 export const loginController = async (req, res) => {
   try {
     
     const { email, password } = req.body;
 
-    //Validation checks
+    // Validation checks
     if (!email || !password) {
       return res.status(404).send({
         success: false,
@@ -86,10 +86,10 @@ export const loginController = async (req, res) => {
       });
     }
 
-    //Check whether user exists or not
+    // Check whether user exists or not
     const user = await userModel.findOne({ email });
     
-    //If user doesn't exist
+    // If user doesn't exist
     if (!user) {
       return res.status(404).send({
         success: false,
@@ -97,10 +97,10 @@ export const loginController = async (req, res) => {
       });
     }
 
-    //Check whether password matches or not
+    // Check whether password matches or not
     const match = await comparePassword(password, user.password);
     
-    //If password doesn't match
+    // If password doesn't match
     if (!match) {
       return res.status(200).send({
         success: false,
@@ -108,15 +108,15 @@ export const loginController = async (req, res) => {
       });
     }
 
-    //JWT token creation
+    // JWT token creation
     const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
+      expiresIn: "1d",        // expires in 1 day
     });
 
     res.status(200).send({
       success: true,
       message: "Successfully Logged in",
-      user: {
+      user: {                         // everything is being passed to the middleware
         _id: user._id,
         name: user.name,
         email: user.email,
@@ -139,7 +139,7 @@ export const loginController = async (req, res) => {
   }
 };
 
-//Test Controller
+// Test Controller
 export const testController = (req, res) => {
   try {
     res.send("Protected Routes");
