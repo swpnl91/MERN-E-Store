@@ -4,8 +4,7 @@ import {
   registerController,
   
 } from "../controllers/authController.js";
-
-
+import { requireSignIn } from "../middlewares/authMiddleware.js";
 
 
 //Router object
@@ -19,6 +18,9 @@ router.post("/register", registerController);     // 'registerController' is cal
 
 //Routing for Login; Method - POST
 router.post("/login", loginController);
+
+//Test routes
+router.get("/test", requireSignIn, testController);
 
 
 export default router;
