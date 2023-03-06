@@ -86,6 +86,17 @@ export const loginController = async (req, res) => {
       });
     }
 
+    //Check whether user exists or not
+    const user = await userModel.findOne({ email });
+    
+    // If user doesn't exist
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: "Email is not registered",
+      });
+    }
+
   } catch (error) {
     console.log(error);
     
