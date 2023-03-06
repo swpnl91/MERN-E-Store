@@ -113,10 +113,28 @@ export const loginController = async (req, res) => {
       expiresIn: "7d",
     });
 
-    
+    res.status(200).send({
+      success: true,
+      message: "Successfully Logged in",
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+        role: user.role,
+      },
+      token,
+    });
 
   } catch (error) {
+    
     console.log(error);
     
+    res.status(500).send({
+      success: false,
+      message: "Login failed",
+      error,
+    });
   }
 };
