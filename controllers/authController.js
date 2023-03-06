@@ -109,7 +109,7 @@ export const loginController = async (req, res) => {
     }
 
     // JWT (token) creation
-    const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
+    const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {      // JWT_SECRET is used to encode the token
       expiresIn: "1d",        // expires in 1 day
     });
 

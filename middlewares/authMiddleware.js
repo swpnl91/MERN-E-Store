@@ -8,7 +8,7 @@ export const requireSignIn = async (req, res, next) => {      // next() is used 
       req.headers.authorization,     // since token is in 'req.headers.authorization' (similar to 'req.body')
       process.env.JWT_SECRET         // uses the secret key to verify the token
     );
-    req.user = decode;           // 'decode' constant (or decoded token) needs to be passed in 'user' otherwise we won't get '_id'
+    req.user = decode;           // 'decode' constant (or decoded token) needs to be passed in 'user' otherwise we won't be able to access '_id' in 'req.user'
     next();   // after processing of 'req(request)', 'next()' gets validated and only then 'res(response)' is sent
   } catch (error) {
     console.log(error);
@@ -18,7 +18,7 @@ export const requireSignIn = async (req, res, next) => {      // next() is used 
 // For Admin access
 export const isAdmin = async (req, res, next) => {
   try {
-    const user = await userModel.findById(req.user._id);    // we get the 'req.user._id' from 'loginController' when we create JWT (token) using '.sign' method
+    const user = await userModel.findById(req.user._id);    // we get the '_id' in 'req.user._id' from 'loginController' when we create JWT (token) using '.sign' method
     
     // If the user is NOT an Admin
     if (user.role !== 1) {
