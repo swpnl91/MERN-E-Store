@@ -1,10 +1,12 @@
-
+import { Routes, Route } from "react-router-dom";
 
 
 function App() {
   return (
     <>
-      <h1>E-Store</h1>
+      <Routes>
+        
+      </Routes>
     </>
   );
 }
