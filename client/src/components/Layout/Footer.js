@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="footer">
+      {/* The 'className="text-center mt-3"' comes from bootstrap */}
       <h1 className="text-center">&copy; JhumriTalaiya Inc., All Rights Reserved.</h1>
       <p className="text-center mt-3">
         <Link to="/about">About</Link>|<Link to="/contact">Contact</Link>|
