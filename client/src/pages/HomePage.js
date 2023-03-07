@@ -6,7 +6,7 @@ import Layout from "./../components/Layout/Layout";
 const HomePage = () => {
   
   return (
-    <Layout>
+    <Layout title={"Our Products - Best offers!"}>
       
     </Layout>
   );
