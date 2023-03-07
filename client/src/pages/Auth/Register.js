@@ -7,6 +7,12 @@ import "../../styles/AuthStyles.css";
 
 const Register = () => {
   
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
   
   return (
     <Layout title="Register - E-Store">
