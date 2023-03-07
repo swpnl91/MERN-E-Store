@@ -3,7 +3,7 @@ import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";       // for showing notification badges
-// import "../../styles/AuthStyles.css";
+import "../../styles/AuthStyles.css";
 
 
 
