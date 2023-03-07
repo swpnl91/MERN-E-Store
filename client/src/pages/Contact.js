@@ -10,6 +10,7 @@ const Contact = () => {
       <div className="row contactus ">
         <div className="col-md-6 ">
           <img
+            // files/documents from 'public' folder can be accessed directly as shown below 
             src="/images/contactus.jpeg"
             alt="contactus"
             style={{ width: "100%" }}
