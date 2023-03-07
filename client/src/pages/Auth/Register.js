@@ -31,7 +31,7 @@ const Register = () => {
         address,
         answer,
       });
-      if (res && res.data.success) {
+      if (res && res.data.success) {     // if 'res' exists and if 'res.data.success' is true
         toast.success(res.data && res.data.message);    // alert notification with toast
         navigate("/login");
       } else {
