@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div className="footer">
       {/* The 'className="text-center mt-3"' comes from bootstrap */}
-      <h1 className="text-center">&copy; JhumriTalaiya Inc., All Rights Reserved.</h1>
+      <h1 className="text-center">&copy; XyloTo Inc., All Rights Reserved.</h1>
       <p className="text-center mt-3">
         <Link to="/about">About</Link>|<Link to="/contact">Contact</Link>|
         <Link to="/policy">Privacy Policy</Link>
