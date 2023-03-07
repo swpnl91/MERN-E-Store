@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
+import axios from "axios";
 
+import toast from "react-hot-toast";       // for showing notification badges
 import "../../styles/AuthStyles.css";
 
 
@@ -14,6 +16,12 @@ const Register = () => {
   const [address, setAddress] = useState("");
   const [answer, setAnswer] = useState("");
   
+  // Form Submit Handler Function
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+  };
+
   return (
     <Layout title="Register - E-Store">
       <div className="form-container" style={{ minHeight: "90vh" }}>
