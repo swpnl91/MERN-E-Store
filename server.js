@@ -6,6 +6,9 @@ import connectDB from './config/db.js';    // notice it's 'db.js' and not 'db' a
 import authRoutes from "./routes/authRoute.js";
 
 
+import cors from "cors";
+
+
 //Configure env
 dotenv.config();   // since .env file is in the root folder we don't need to define a path like this 'dotenv.config({path:'...'});'
 
@@ -16,7 +19,7 @@ connectDB();
 const app = express();
 
 //Middelwares
-
+app.use(cors());
 app.use(express.json());  // enabling json so that we can send json data with 'req/res' (instead of 'body-parser')
 app.use(morgan("dev"));   // tells us abou the type of 'request (GET/POST etc.)' status code and how much time it took (in ms) for execution, in the terminal. Useful for debugging and will be removed in production
 
