@@ -8,6 +8,18 @@ const Header = () => {
   
   const [auth, setAuth] = useAuth();
 
+
+
+  const handleLogout = () => {
+    setAuth({    // setting the auth back to how it was (as far as 'user' and 'token' are concerned)
+      ...auth,    // we use spread operator and include the existing state because it may even have some extra information apart from 'user'/'token' which we don't want to lose
+      user: null, 
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    toast.success("You've Logged Out Successfully");
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
