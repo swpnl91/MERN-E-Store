@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
 
+
+
 const ForgotPassword = () => {
   
   const [email, setEmail] = useState("");
@@ -59,7 +61,7 @@ const ForgotPassword = () => {
               onChange={(e) => setAnswer(e.target.value)}
               className="form-control"
               id="exampleInputEmail1"
-              placeholder="Enter Your Favorite Sports Team"
+              placeholder="Your Favorite Sports Team"
               required
             />
           </div>
