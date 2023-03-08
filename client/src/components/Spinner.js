@@ -8,6 +8,14 @@ const Spinner = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((prevValue) => --prevValue);
+    }, 1000);
+    count === 0 &&
+      navigate(`/login`);
+    return () => clearInterval(interval);
+  }, [count, navigate]);
 
   return (
     <>
@@ -15,7 +23,7 @@ const Spinner = () => {
         className="d-flex flex-column justify-content-center align-items-center"
         style={{ height: "100vh" }}
       >
-        <h1 className="Text-center">Redirecting in  </h1>
+        <h1 className="Text-center">Redirecting in {count}</h1>
         <div className="spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
