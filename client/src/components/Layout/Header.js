@@ -1,13 +1,16 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 
 
 
 const Header = () => {
   
+  const [auth, setAuth] = useAuth();
+
   return (
     <>
-      {/* <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -31,7 +34,7 @@ const Header = () => {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item dropdown">
+              {/* <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
                   to={"/categories"}
@@ -56,8 +59,9 @@ const Header = () => {
                     </li>
                   ))}
                 </ul>
-              </li>
+              </li> */}
 
+              {/* If the auth.user doesn't exist (user hasn't logged in) then show REGISTER/LOGIN options */}
               {!auth?.user ? (
                 <>
                   <li className="nav-item">
@@ -107,17 +111,17 @@ const Header = () => {
                   </li>
                 </>
               )}
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <NavLink to="/cart" className="nav-link">
                   <Badge count={cart?.length} showZero offset={[10, -5]}>
                     Cart
                   </Badge>
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
-      </nav> */}
+      </nav>
     </>
   );
 };
