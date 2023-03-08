@@ -34,7 +34,7 @@ router.get("/user-auth", requireSignIn, (req, res) => {     // not creating a se
 });
 
 // Routing for Protected/Authorized paths (Admin); Method - GET
-router.get("/admin-auth", requireSignIn, (req, res) => {     
+router.get("/admin-auth", requireSignIn,  isAdmin, (req, res) => {     
   res.status(200).send({ ok: true });
 });
 
