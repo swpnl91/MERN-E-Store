@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../context/auth";
 import { Outlet } from "react-router-dom";
 import axios from "axios";
+import Spinner from "../Spinner";
 
 
 export default function PrivateRoute() {
@@ -27,6 +28,6 @@ export default function PrivateRoute() {
 
   }, [auth?.token]);
 
-  return ok ? <Outlet /> : '<Spinner />';    // '<Outlet />' is used for nested Routing (Can be seen in 'App.js'). '<Spinner />' is basically loader/loading spinner
+  return ok ? <Outlet /> : <Spinner />;    // '<Outlet />' is used for nested Routing (Can be seen in 'App.js'). '<Spinner />' is basically loader/loading spinner
 
 }
