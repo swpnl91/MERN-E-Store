@@ -4,6 +4,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const Spinner = () => {
   
+  const [count, setCount] = useState(3);
+  const navigate = useNavigate();
+  const location = useLocation();
   
 
   return (
