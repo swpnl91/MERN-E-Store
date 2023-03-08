@@ -7,9 +7,14 @@ import "../../styles/AuthStyles.css";
 
 const ForgotPassword = () => {
   
+  const [email, setEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [answer, setAnswer] = useState("");
+
+  const navigate = useNavigate();
   
 
-  
+
   return (
     <Layout title={"Forgot Password - E-Store"}>
       <div className="form-container ">
