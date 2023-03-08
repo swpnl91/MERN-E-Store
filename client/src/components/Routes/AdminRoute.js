@@ -8,7 +8,9 @@ import Spinner from "../Spinner";
 
 export default function PrivateRoute() {
   
+  const [ok, setOk] = useState(false);
+  const [auth, setAuth] = useAuth();
   
 
-  
+  return ok ? <Outlet /> : <Spinner path="" />;
 }
