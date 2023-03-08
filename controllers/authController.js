@@ -139,6 +139,60 @@ export const loginController = async (req, res) => {
   }
 };
 
+// Forgot Password
+export const forgotPasswordController = async (req, res) => {
+  
+  try {
+    
+    // Getting user input
+    const { email, answer, newPassword } = req.body;     // we're using a 'security question' to authenticate the user instead of OTP/email for simplicity
+    
+    // Checking for any empty fields
+    if (!email) {
+      res.status(400).send({ message: "Email is required!" });
+    }
+
+    if (!answer) {
+      res.status(400).send({ message: "Answer is required!" });
+    }
+
+    if (!newPassword) {
+      res.status(400).send({ message: "New Password is required!" });
+    }
+
+    // Find user with given email and answer
+    const user = await userModel.findOne({ email, answer });
+
+    // If user doesn't exist
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: "Wrong Email Or Answer",
+      });
+    }
+
+    // If user exists - hash the new password
+    const hashed = await hashPassword(newPassword);
+
+    // Storing the new hashed passsword
+    await userModel.findByIdAndUpdate(user._id, { password: hashed });
+    res.status(200).send({
+      success: true,
+      message: "Password Has Been Reset Successfully",
+    });
+
+  } catch (error) {
+    
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Something Went Wrong",
+      error,
+    });
+
+  }
+};
+
 // Test Controller
 export const testController = (req, res) => {
   try {
