@@ -12,7 +12,7 @@ const Login = () => {
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [auth, setAuth] = useAuth();
+  const [auth, setAuth] = useAuth();      // we get it from 'auth.js' in 'context' 
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,20 +20,20 @@ const Login = () => {
   // Form Submit Handler Function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-      const res = await axios.post("/api/v1/auth/login", {
+      const res = await axios.post("/api/v1/auth/login", {     // we send 'email', 'password' in 'req.body' to backend (authController.js - POST Login)
         email,
         password,
       });
-      if (res && res.data.success) {
+      if (res && res.data.success) {        // if 'res' exists and 'res.data.success' is true
         toast.success(res.data && res.data.message);
-        setAuth({
+        setAuth({              // we're setting the state in context (auth.js)
           ...auth,
           user: res.data.user,
-          token: res.data.token,
+          token: res.data.token,        // 'res.data.token' comes from backend (authController.js - POST Login)
         });
-        localStorage.setItem("auth", JSON.stringify(res.data));
+        localStorage.setItem("auth", JSON.stringify(res.data));          // the token needs to be stored in the 'localStorage' as it's lost when the user refreshes the page. The data also needs to be converted to a string as 'localStorage' doesn't support JSON data.
         navigate(location.state || "/");
       } else {
         toast.error(res.data.message);
