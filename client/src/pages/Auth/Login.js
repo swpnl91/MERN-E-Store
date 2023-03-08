@@ -34,7 +34,7 @@ const Login = () => {
           token: res.data.token,        // 'res.data.token' comes from backend (authController.js - POST Login)
         });
         localStorage.setItem("auth", JSON.stringify(res.data));          // the token needs to be stored in the 'localStorage' as it's lost when the user refreshes the page. The data also needs to be converted to a string as 'localStorage' doesn't support JSON data.
-        navigate(location.state || "/");
+        navigate(location.state || "/");       // 'location.state' is created in 'Spinner.js' (it's matching route is '/login' and hence 'location.state' is accessible here in 'Login.js'). If it exists the user is redirected to the same path as he/she was before after logging in OR else redirected to homepage (if it doesn't)
       } else {
         toast.error(res.data.message);
       }

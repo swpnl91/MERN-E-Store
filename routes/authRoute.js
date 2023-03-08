@@ -3,6 +3,7 @@ import {
   loginController,
   registerController,
   testController,
+  forgotPasswordController,
   
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
@@ -20,6 +21,9 @@ router.post("/register", registerController);     // 'registerController' is cal
 
 // Routing for Login; Method - POST
 router.post("/login", loginController);
+
+// Routing for Forgot Password; Method - POST
+router.post("/forgot-password", forgotPasswordController);
 
 // Test routes
 router.get("/test", requireSignIn, isAdmin, testController);     // The 'next()' in 'requireSignIn'/'isAdmin' (middlewares) makes it execute 'testController'

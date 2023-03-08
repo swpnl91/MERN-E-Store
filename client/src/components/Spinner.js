@@ -9,13 +9,17 @@ const Spinner = () => {
   const location = useLocation();
   
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval = setInterval(() => {         // 'count' is used to show timer and hence 'setInterval' is used to decrease its value every 1 second 
       setCount((prevValue) => --prevValue);
     }, 1000);
-    count === 0 &&
-      navigate(`/login`);
+
+    count === 0 &&            // If 'count === 0' it redirects you to whatever path you want using 'navigate'
+      navigate(`/login`, {
+        state: location.pathname,       // 'location.pathname' gives you the current pathname (where the user is). This is done for seamless user experience as the user should be guided to wherever he/she was before logging in (AFTER they log in)
+      });
+      
     return () => clearInterval(interval);
-  }, [count, navigate]);
+  }, [count, navigate, location,]);
 
   return (
     <>
