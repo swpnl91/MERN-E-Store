@@ -11,6 +11,10 @@ const AuthProvider = ({ children }) => {
     token: "",
   });
 
+  // Setting Default 'axios' property ('headers')
+  // It ensures whatever (axios) requests go, we have the 'headers' property (with the 'token' if it exists)
+  // 'axios.defaults.headers.common' made available by axios
+  axios.defaults.headers.common["Authorization"] = auth?.token;
 
   // 'useEffect' is used so that we can access the data (token) stored in 'localStorage' 
   useEffect(() => {

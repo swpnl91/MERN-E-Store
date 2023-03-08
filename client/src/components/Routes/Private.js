@@ -12,6 +12,10 @@ export default function PrivateRoute() {
   useEffect(() => {
     const authCheck = async () => {
       const res = await axios.get("/api/v1/auth/user-auth");
+      // No need to set 'headers' here as it's already taken care of in 'auth.js' in 'context'
+      // headers: {
+      //   Authorization: auth?.token,
+      // },
       if (res.data.ok) {
         setOk(true);
       } else {
