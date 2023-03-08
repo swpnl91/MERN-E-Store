@@ -13,9 +13,9 @@ export default function PrivateRoute() {
     const authCheck = async () => {
       const res = await axios.get("/api/v1/auth/user-auth");
       // No need to set 'headers' here as it's already taken care of in 'auth.js' in 'context'
-      // headers: {
+      // ..., headers: {
       //   Authorization: auth?.token,
-      // },
+      // },...);
       if (res.data.ok) {
         setOk(true);
       } else {
@@ -27,6 +27,6 @@ export default function PrivateRoute() {
 
   }, [auth?.token]);
 
-  return ok ? <Outlet /> : '<Spinner />';    // '<Outlet />' is used for nested Routing (Can be seen in 'App.js')
+  return ok ? <Outlet /> : '<Spinner />';    // '<Outlet />' is used for nested Routing (Can be seen in 'App.js'). '<Spinner />' is basically loader/loading spinner
 
 }
