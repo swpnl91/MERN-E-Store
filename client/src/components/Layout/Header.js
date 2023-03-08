@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
+import toast from "react-hot-toast";
 
 
 
@@ -16,7 +17,7 @@ const Header = () => {
       user: null, 
       token: "",
     });
-    localStorage.removeItem("auth");
+    localStorage.removeItem("auth");      // removing 'token' from 'localStorage'
     toast.success("You've Logged Out Successfully");
   };
 
@@ -40,7 +41,7 @@ const Header = () => {
               🛒 E-Store
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <SearchInput />
+              {/* <SearchInput /> */}
               <li className="nav-item">
                 <NavLink to="/" className="nav-link ">
                   Home
@@ -113,7 +114,7 @@ const Header = () => {
                       <li>
                         <NavLink
                           onClick={handleLogout}
-                          to="/login"
+                          to="/login"       // after logging out the user is taken to '/login'
                           className="dropdown-item"
                         >
                           Logout
