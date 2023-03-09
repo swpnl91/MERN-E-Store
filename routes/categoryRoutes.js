@@ -1,7 +1,7 @@
 import express from "express";
 import { isAdmin, requireSignIn } from "./../middlewares/authMiddleware.js";
 import {
-  
+  categoryController,
   createCategoryController,
   
 
@@ -30,6 +30,9 @@ router.put(
   isAdmin,
   updateCategoryController
 );
+
+// Getting All Categories (Users/Admin/Everyone)
+router.get("/get-category", categoryController);
 
 
 
