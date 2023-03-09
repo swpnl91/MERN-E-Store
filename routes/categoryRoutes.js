@@ -32,7 +32,7 @@ router.put(
 );
 
 // Getting All Categories (Users/Admin/Everyone)
-router.get("/get-category", categoryController);
+router.get("/get-categories", categoryController);
 
 
 
