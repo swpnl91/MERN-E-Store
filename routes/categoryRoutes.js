@@ -4,6 +4,8 @@ import {
   
   createCategoryController,
   
+
+  updateCategoryController,
 } from "./../controllers/categoryController.js";
 
 
@@ -19,6 +21,14 @@ router.post(
   requireSignIn,
   isAdmin,
   createCategoryController
+);
+
+// Updating a category (Admin)
+router.put(
+  "/update-category/:id",
+  requireSignIn,
+  isAdmin,
+  updateCategoryController
 );
 
 
