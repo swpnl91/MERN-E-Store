@@ -101,3 +101,26 @@ export const categoryController = async (req, res) => {
     });
   }
 };
+
+// Getting a single category (Everyone)
+export const singleCategoryController = async (req, res) => {
+  try {
+    
+    const category = await categoryModel.findOne({ slug: req.params.slug });
+    
+    res.status(200).send({
+      success: true,
+      message: "Fetched a single category successfully",
+      category,
+    });
+  } catch (error) {
+    
+    console.log(error);
+    
+    res.status(500).send({
+      success: false,
+      error,
+      message: "There was an error while getting the category",
+    });
+  }
+};
