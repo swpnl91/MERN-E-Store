@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from './config/db.js';    // notice it's 'db.js' and not 'db' as we're using import/export instead of 'require' we also need to specify the file extension here
 import authRoutes from "./routes/authRoute.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
 
 
 import cors from "cors";
@@ -25,6 +26,7 @@ app.use(morgan("dev"));   // tells us abou the type of 'request (GET/POST etc.)'
 
 //Routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/category", categoryRoutes);
 
 
 //Rest API

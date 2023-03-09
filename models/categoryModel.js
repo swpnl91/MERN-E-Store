@@ -7,7 +7,7 @@ const categorySchema = new mongoose.Schema({
     unique: true,
   },
   slug: {            // used for slugifying, for ex. - '.../package-slugify'. To get the '-'/'_' in URLs (which is great for SEO)
-    type: String,
+    type: String,     // basically stores the slugified name of a category
     lowercase: true,
   },
 });
