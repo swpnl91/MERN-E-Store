@@ -3,7 +3,7 @@ import { isAdmin, requireSignIn } from "./../middlewares/authMiddleware.js";
 import {
   categoryController,
   createCategoryController,
-  
+  deleteCategoryController,
   singleCategoryController,
   updateCategoryController,
 } from "./../controllers/categoryController.js";
@@ -36,6 +36,14 @@ router.get("/get-categories", categoryController);
 
 // Getting a single Category (Users/Admin/Everyone)
 router.get("/single-category/:slug", singleCategoryController);
+
+// Deleting a category (Admin)
+router.delete(
+  "/delete-category/:id",
+  requireSignIn,
+  isAdmin,
+  deleteCategoryController
+);
 
 
 

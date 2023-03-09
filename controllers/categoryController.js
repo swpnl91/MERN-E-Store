@@ -106,7 +106,7 @@ export const categoryController = async (req, res) => {
 export const singleCategoryController = async (req, res) => {
   try {
     
-    const category = await categoryModel.findOne({ slug: req.params.slug });
+    const category = await categoryModel.findOne({ slug: req.params.slug });   // we get the slug from the url (req.params)
     
     res.status(200).send({
       success: true,
