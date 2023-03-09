@@ -131,7 +131,7 @@ export const deleteCategoryController = async (req, res) => {
     
     const { id } = req.params;
     
-    await categoryModel.findByIdAndDelete(id);
+    await categoryModel.findByIdAndDelete(id);      // no need to save the response here hence not stored in a constant
     
     res.status(200).send({
       success: true,
