@@ -19,7 +19,7 @@ const Spinner = ({ path = "login" }) => {       // So 'path' is passed as an arg
       });
       
     return () => clearInterval(interval);
-  }, [count, navigate, location,]);
+  }, [count, navigate, location, path]);
 
   return (
     <>
