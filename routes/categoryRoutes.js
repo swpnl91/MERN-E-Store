@@ -4,7 +4,7 @@ import {
   categoryController,
   createCategoryController,
   
-
+  singleCategoryController,
   updateCategoryController,
 } from "./../controllers/categoryController.js";
 
@@ -33,6 +33,9 @@ router.put(
 
 // Getting All Categories (Users/Admin/Everyone)
 router.get("/get-categories", categoryController);
+
+// Getting a single Category (Users/Admin/Everyone)
+router.get("/single-category/:slug", singleCategoryController);
 
 
 
