@@ -35,13 +35,45 @@ export const createCategoryController = async (req, res) => {
       category,
     });
   } catch (error) {
-    
+
     console.log(error);
 
     res.status(500).send({
       success: false,
       error,
       message: "Error in Category",
+    });
+  }
+};
+
+// Updating a category (Admin)
+export const updateCategoryController = async (req, res) => {
+  
+  try {
+    
+    const { name } = req.body;
+    const { id } = req.params;      // we get the 'id' from the url
+    
+    // Finding the 'category' by 'id'
+    const category = await categoryModel.findByIdAndUpdate(
+      id,
+      { name, slug: slugify(name) },
+      { new: true }      // needs to be done for updating items 
+    );
+    
+    res.status(200).send({
+      success: true,
+      messsage: "Category Updated Successfully",
+      category,
+    });
+  } catch (error) {
+    
+    console.log(error);
+    
+    res.status(500).send({
+      success: false,
+      error,
+      message: "There was an error while updating the category",
     });
   }
 };
