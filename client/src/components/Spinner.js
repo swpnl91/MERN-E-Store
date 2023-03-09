@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 
-const Spinner = () => {
+const Spinner = ({ path = "login" }) => {       // So 'path' is passed as an argument. If it doesn't have a value then "login" is assigned as an initial value/default value.
   
   const [count, setCount] = useState(3);
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const Spinner = () => {
     }, 1000);
 
     count === 0 &&            // If 'count === 0' it redirects you to whatever path you want using 'navigate'
-      navigate(`/login`, {
+      navigate(`/${path}`, {           // The dynamic '/${path}' basically takes the user to whatever value that is assigned to the 'path'. You wouldn't want the user to be redirected to the login page when the user is already logged in. 
         state: location.pathname,       // 'location.pathname' gives you the current pathname (where the user is). This is done for seamless user experience as the user should be guided to wherever he/she was before logging in (AFTER they log in)
       });
       
