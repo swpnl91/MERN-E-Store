@@ -23,5 +23,5 @@ export default function PrivateRoute() {
     if (auth?.token) authCheck();
   }, [auth?.token]);
 
-  return ok ? <Outlet /> : <Spinner path="" />;
+  return ok ? <Outlet /> : <Spinner path="" />;      // providing 'path' to 'Spinner' component so that it redirects to home page '/'
 }
