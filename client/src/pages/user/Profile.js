@@ -9,6 +9,53 @@ import axios from "axios";
 
 const Profile = () => {
   
+  // Getting the context
+  const [auth, setAuth] = useAuth();
+
+  // State constants
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+
+  // Get user data
+  useEffect(() => {
+    const { email, name, phone, address } = auth?.user;
+    setName(name);
+    setPhone(phone);
+    setEmail(email);
+    setAddress(address);
+  }, [auth?.user]);
+
+  // Form submit function
+  const handleSubmit = async (e) => {
+    
+    e.preventDefault();
+    
+    try {
+      const { data } = await axios.put("/api/v1/auth/profile", {
+        name,
+        email,
+        password,
+        phone,
+        address,
+      });
+      if (data?.errro) {
+        toast.error(data?.error);
+      } else {
+        setAuth({ ...auth, user: data?.updatedUser });
+        let ls = localStorage.getItem("auth");
+        ls = JSON.parse(ls);
+        ls.user = data.updatedUser;
+        localStorage.setItem("auth", JSON.stringify(ls));
+        toast.success("Profile Updated Successfully");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
 
 
 
@@ -88,7 +135,7 @@ const Profile = () => {
                 <button type="submit" className="btn btn-primary">
                   UPDATE
                 </button>
-                
+
               </form>
             </div>
           </div>
