@@ -69,6 +69,7 @@ export const createProductController = async (req, res) => {
 
 // Get all products (Everyone)
 export const getProductController = async (req, res) => {
+  
   try {
     
     const products = await productModel
@@ -92,6 +93,33 @@ export const getProductController = async (req, res) => {
       success: false,
       message: "Error in getting products",
       error: error.message,
+    });
+  }
+};
+
+// Get a single product (Everyone)
+export const getSingleProductController = async (req, res) => {
+  
+  try {
+    
+    const product = await productModel
+      .findOne({ slug: req.params.slug })
+      .select("-photo")        // removing 'photo' for reasons mentioned above 
+      .populate("category");  // it basically populates the 'category' (with its details) field instead of just getting its 'id'
+    
+      res.status(200).send({
+      success: true,
+      message: "Single Product Fetched",
+      product,
+    });
+  } catch (error) {
+    
+    console.log(error);
+    
+    res.status(500).send({
+      success: false,
+      message: "Error while getting the product",
+      error,
     });
   }
 };
