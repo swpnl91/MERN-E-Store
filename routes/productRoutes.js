@@ -5,6 +5,10 @@ import {
 
   getProductController,
   getSingleProductController,
+
+
+
+  productPhotoController
   
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
@@ -34,6 +38,9 @@ router.get("/get-products", getProductController);
 
 // Get a single product
 router.get("/get-product/:slug", getSingleProductController);
+
+// Get a photo
+router.get("/product-photo/:pid", productPhotoController);
 
 
 
