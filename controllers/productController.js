@@ -66,3 +66,32 @@ export const createProductController = async (req, res) => {
     });
   }
 };
+
+// Get all products (Everyone)
+export const getProductController = async (req, res) => {
+  try {
+    
+    const products = await productModel
+      .find({})
+      .populate("category")      // '.populate('category')' basically also gives us details about the property that's passed (in this case 'category'). Otherwise it'd have just returned the 'id' of 'category'. 
+      .select("-photo")          // as 'photo' (pictures) increases the size of the 'request (req)' and hence takes a lot of time to load (we'll be using different API for getting photos). '-photo' ensures it doesn't get photos.
+      .limit(12)                  // adds a limit for number of products to be shown at a time
+      .sort({ createdAt: -1 });     // This ('-1') is done to sort it in a descending order by using its 'createdAt' field
+    
+      res.status(200).send({
+      success: true,
+      countTotal: products.length,
+      message: "List of all Products ",
+      products,
+    });
+  } catch (error) {
+    
+    console.log(error);
+    
+    res.status(500).send({
+      success: false,
+      message: "Error in getting products",
+      error: error.message,
+    });
+  }
+};
