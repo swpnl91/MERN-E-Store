@@ -8,8 +8,11 @@ import {
 
 
 
-  productPhotoController
+  productPhotoController,
   
+
+
+  updateProductController,
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
@@ -31,7 +34,14 @@ router.post(
   createProductController
 );
 
-
+// Update a product (Admin)
+router.put(
+  "/update-product/:pid",
+  requireSignIn,
+  isAdmin,
+  formidable(),        // In addition to what's mentioned above, we get 'req.fields' and 'req.files' from 'formidable'
+  updateProductController
+);
 
 // Get all products (Everyone)
 router.get("/get-products", getProductController);
