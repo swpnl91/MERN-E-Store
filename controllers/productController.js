@@ -12,7 +12,7 @@ dotenv.config();
 
 
 
-// Creating a new product (Admin)      *****************************////////**************
+// Creating a new product (Admin)      *********************////////**************
 export const createProductController = async (req, res) => {
   try {
     
@@ -35,13 +35,13 @@ export const createProductController = async (req, res) => {
         return res.status(500).send({ message: "Quantity Is Required" });
       case !photo:
         return res.status(500).send({ message: "Photo Is Required" });
-      case photo && photo.size > 1000000:   // 1 (for 1 MB) * 1024 * 1024, the value is in bytes?!!!!!!!
+      case photo && photo.size > 1000000:   // 1 (for 1 MB) * 1024 * 1024, the value is in bytes?!!!!!!!********
         return res
           .status(500)
           .send({ message: "Photo size should be less then 1MB" });
     }
 
-    const product = new productModel({ ...req.fields, slug: slugify(name) });     // retaining all the fields by using '...req.fields'. It includes 'shipping' (although it's not mandatory to add it as per 'productmodels') too?!!!!!!!!!!
+    const product = new productModel({ ...req.fields, slug: slugify(name) });     // retaining all the fields by using '...req.fields'. It doesn't include 'shipping' (as it's not mandatory to add it as per 'productmodels')
     
     if (photo) {
       // 'photo.path' and 'photo.type' are included in 'req.files' when we upload a photo on the frontend using "enctype='multipart/form-data'"
@@ -54,7 +54,7 @@ export const createProductController = async (req, res) => {
     res.status(201).send({
       success: true,
       message: "Product Created Successfully",
-      product,
+      product,        // As a reminder, this 'product' includes the 'photo' field but doesn't include the 'shipping' field
     });
   } catch (error) {
     
@@ -68,7 +68,7 @@ export const createProductController = async (req, res) => {
   }
 };
 
-// Get all products (Everyone)
+// Get all products (Everyone)         **********////////**************
 export const getProductController = async (req, res) => {
   
   try {
@@ -76,7 +76,7 @@ export const getProductController = async (req, res) => {
     const products = await productModel
       .find({})
       .populate("category")      // '.populate('category')' basically also gives us details about the property that's passed (in this case 'category'). Otherwise it'd have just returned the 'id' of 'category'. 
-      .select("-photo")          // as 'photo' (pictures) increases the size of the 'request (req)' and hence takes a lot of time to load (we'll be using different API for getting photos). '-photo' ensures it gets everything but photos.
+      .select("-photo")          // as 'photo' (pictures) increases the size of the 'request (req)' and hence takes a lot of time to load (we'll be using/calling a different API - created below - from frontend, for getting photos). '-photo' ensures it gets everything but photos.
       .limit(12)                  // adds a limit for number of products to be shown at a time
       .sort({ createdAt: -1 });     // This ('-1') is done to sort it in a descending order by using its 'createdAt' field
     
@@ -125,7 +125,7 @@ export const getSingleProductController = async (req, res) => {
   }
 };
 
-// Get a photo        //============================= figure out how to get photos and products together =========================
+// Get a photo
 export const productPhotoController = async (req, res) => {
   
   try {
@@ -144,6 +144,29 @@ export const productPhotoController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error while getting photo",
+      error,
+    });
+  }
+};
+
+// Delete a product
+export const deleteProductController = async (req, res) => {
+  
+  try {
+    
+    await productModel.findByIdAndDelete(req.params.pid).select("-photo");       // '.select("-photo")' only ensures the 'photo' field is not fetched but it's deleted anyway when the product is deleted     
+    
+    res.status(200).send({
+      success: true,
+      message: "Product Deleted successfully",
+    });
+  } catch (error) {
+    
+    console.log(error);
+    
+    res.status(500).send({
+      success: false,
+      message: "Error while deleting the product",
       error,
     });
   }
