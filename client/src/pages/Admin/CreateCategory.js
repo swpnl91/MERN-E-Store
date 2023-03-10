@@ -9,7 +9,7 @@ import CategoryForm from "../../components/Form/CategoryForm";
 
 const CreateCategory = () => {
   
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);      // several categories will be stored in an array
   const [name, setName] = useState("");
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -30,23 +30,25 @@ const CreateCategory = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("somthing went wrong in input form");
+      toast.error("Something went wrong while submitting the input form");
     }
   };
 
   // Function to get all the categories
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const { data } = await axios.get("/api/v1/category/get-categories");
+      
       if (data?.success) {
-        setCategories(data?.category);
+        setCategories(data?.category);     // the 'category' from 'data.category' comes from the 'res.status(200).send({...})' in 'categoryController.js'. So be mindful of the spelling mistakes.
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Something went wrong while fetching the categories");
     }
   };
 
+  // When the dependency array is empty the 'useEffect' function for the very first time only. Hence, this serves to get all the categories initially.
   useEffect(() => {
     getAllCategory();
   }, []);
@@ -87,11 +89,11 @@ const CreateCategory = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error("Somtihing went wrong");
+      toast.error("Something went wrong");
     }
   };
 
-  
+
   return (
     <Layout title={"Dashboard - Create Category"}>
       <div className="container-fluid m-3 p-3 dashboard">
@@ -103,7 +105,7 @@ const CreateCategory = () => {
           
           <div className="col-md-9">
             
-            <h1>Manage Category</h1>
+            <h1>Manage Categories</h1>
             
             <div className="p-3 w-50">
               <CategoryForm
