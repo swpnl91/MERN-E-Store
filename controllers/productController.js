@@ -171,3 +171,63 @@ export const deleteProductController = async (req, res) => {
     });
   }
 };
+
+// Upate a product (Admin)
+export const updateProductController = async (req, res) => {
+  
+  try {
+    
+    const { name, description, price, category, quantity, shipping } =
+      req.fields;
+    
+    const { photo } = req.files;
+    
+    // Validations (same as those that we used for 'creating a product')
+    switch (true) {
+      case !name:
+        return res.status(500).send({ message: "Name is Required" });
+      case !description:
+        return res.status(500).send({ message: "Description is Required" });
+      case !price:
+        return res.status(500).send({ message: "Price is Required" });
+      case !category:
+        return res.status(500).send({ message: "Category is Required" });
+      case !quantity:
+        return res.status(500).send({ message: "Quantity is Required" });
+      case !photo:
+        return res.status(500).send({ message: "Photo Is Required" });
+      case photo && photo.size > 1000000:
+        return res
+          .status(500)
+          .send({ message: "Photo size should be less then 1MB" });
+    }
+
+    const product = await productModel.findByIdAndUpdate(
+      req.params.pid,
+      { ...req.fields, slug: slugify(name) },
+      { new: true }       // needed for updating in mongoose
+    );
+
+    if (photo) {
+      product.photo.data = fs.readFileSync(photo.path);
+      product.photo.contentType = photo.type;
+    }
+
+    await product.save();
+
+    res.status(201).send({
+      success: true,
+      message: "Product Updated Successfully",
+      product,
+    });
+  } catch (error) {
+    
+    console.log(error);
+    
+    res.status(500).send({
+      success: false,
+      error,
+      message: "There was an error while updating the product",
+    });
+  }
+};
