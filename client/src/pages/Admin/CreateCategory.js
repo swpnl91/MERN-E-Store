@@ -51,6 +51,28 @@ const CreateCategory = () => {
     getAllCategory();
   }, []);
 
+  // Function for updating the category
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.put(
+        `/api/v1/category/update-category/${selected._id}`,
+        { name: updatedName }
+      );
+      if (data?.success) {
+        toast.success(`${updatedName} is updated`);
+        setSelected(null);
+        setUpdatedName("");
+        setVisible(false);
+        getAllCategory();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Layout title={"Dashboard - Create Category"}>
       <div className="container-fluid m-3 p-3 dashboard">
