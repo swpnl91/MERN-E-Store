@@ -4,6 +4,7 @@ import {
   createProductController,
 
   getProductController,
+  getSingleProductController,
   
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
@@ -30,6 +31,9 @@ router.post(
 
 // Get all products (Everyone)
 router.get("/get-products", getProductController);
+
+// Get a single product
+router.get("/get-product/:slug", getSingleProductController);
 
 
 
