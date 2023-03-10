@@ -15,6 +15,24 @@ const CreateCategory = () => {
   const [selected, setSelected] = useState(null);
   const [updatedName, setUpdatedName] = useState("");
 
+  // Function to handle Form Submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post("/api/v1/category/create-category", {
+        name,
+      });
+      if (data?.success) {
+        toast.success(`${name} is created`);
+        getAllCategory();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("somthing went wrong in input form");
+    }
+  };
 
   return (
     <Layout title={"Dashboard - Create Category"}>
