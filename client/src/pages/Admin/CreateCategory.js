@@ -34,6 +34,19 @@ const CreateCategory = () => {
     }
   };
 
+  // Function to get all the categories
+  const getAllCategory = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/category/get-category");
+      if (data?.success) {
+        setCategories(data?.category);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something wwent wrong in getting catgeory");
+    }
+  };
+
   return (
     <Layout title={"Dashboard - Create Category"}>
       <div className="container-fluid m-3 p-3 dashboard">
