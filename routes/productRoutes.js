@@ -2,7 +2,7 @@ import express from "express";
 import {
   
   createProductController,
-
+  deleteProductController,
   getProductController,
   getSingleProductController,
 
@@ -41,6 +41,13 @@ router.get("/get-product/:slug", getSingleProductController);
 
 // Get a photo
 router.get("/product-photo/:pid", productPhotoController);     // based 'pid' (product id)
+
+// Delete product (Admin)
+router.delete("/delete-product/:pid", 
+  requireSignIn,
+  isAdmin, 
+  deleteProductController
+);
 
 
 
