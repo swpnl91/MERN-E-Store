@@ -2,6 +2,8 @@ import express from "express";
 import {
   
   createProductController,
+
+  getProductController,
   
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
@@ -23,6 +25,11 @@ router.post(
   formidable(),    // Used for 'multipart/form-data' file upload (which is done on the front-end)
   createProductController
 );
+
+
+
+// Get all products (Everyone)
+router.get("/get-products", getProductController);
 
 
 

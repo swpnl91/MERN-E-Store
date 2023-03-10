@@ -28,7 +28,7 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     photo: {
-      data: Buffer,               // a special case to store a file that can be pictures/documents etc.
+      data: Buffer,               // a special case to store a file that can be pictures/documents etc. (provided by mongoose)
       contentType: String,        // so that we can specify what type of file is being stored (pictures/documents etc.)
     },
     shipping: {
