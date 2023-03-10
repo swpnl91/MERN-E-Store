@@ -40,7 +40,7 @@ router.get("/get-products", getProductController);
 router.get("/get-product/:slug", getSingleProductController);
 
 // Get a photo
-router.get("/product-photo/:pid", productPhotoController);
+router.get("/product-photo/:pid", productPhotoController);     // based 'pid' (product id)
 
 
 
