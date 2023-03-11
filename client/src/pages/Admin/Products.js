@@ -28,7 +28,21 @@ const Products = () => {
           
           <h1 className="text-center">List of Products</h1>
           
-          
+          <div className="d-flex flex-wrap">
+            
+            {products?.map((p) => (
+              
+              <Link
+                key={p._id}
+                to={`/dashboard/admin/product/${p.slug}`}
+                className="product-link"
+              >
+                
+              </Link>
+
+            ))}
+
+          </div>
 
         </div>
 
