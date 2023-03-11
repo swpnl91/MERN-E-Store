@@ -43,7 +43,10 @@ const Products = () => {
                     className="card-img-top"
                     alt={p.name}
                   />
-                  
+                  <div className="card-body">
+                    <h5 className="card-title">{p.name}</h5>
+                    <p className="card-text">{p.description}</p>
+                  </div>
                 </div>
               </Link>
 
