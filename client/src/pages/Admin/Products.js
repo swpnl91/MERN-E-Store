@@ -18,6 +18,16 @@ const Products = () => {
   return (
     <Layout>
       
+      <div className="row dashboard">
+        
+        <div className="col-md-3">
+          <AdminMenu />
+        </div>
+        
+        
+
+      </div>
+
     </Layout>
   );
 };
