@@ -23,7 +23,34 @@ const CreateProduct = () => {
             <AdminMenu />
           </div>
 
-          
+          <div className="col-md-9">
+            
+            <h1>Create Product</h1>
+            
+            <div className="m-1 w-75">
+              
+              <Select
+                bordered={false}
+                placeholder="Select a category"
+                size="large"
+                showSearch
+                className="form-select mb-3"
+                onChange={(value) => {
+                  setCategory(value);
+                }}
+              >
+                {categories?.map((c) => (
+                  <Option key={c._id} value={c._id}>
+                    {c.name}
+                  </Option>
+                ))}
+              </Select>
+
+              
+
+            </div>
+
+          </div>
 
         </div>
       </div>
