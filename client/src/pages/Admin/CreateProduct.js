@@ -34,6 +34,11 @@ const CreateProduct = () => {
     }
   };
 
+  // 'useEffect' function to get all the categories initially
+  useEffect(() => {
+    getAllCategory();
+  }, []);
+
 
 
   return (
