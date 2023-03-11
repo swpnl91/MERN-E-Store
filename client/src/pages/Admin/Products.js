@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const Products = () => {
   
-
+  const [products, setProducts] = useState([]);
 
 
 
