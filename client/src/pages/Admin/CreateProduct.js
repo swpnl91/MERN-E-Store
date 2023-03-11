@@ -59,6 +59,59 @@ const CreateProduct = () => {
                 </label>
               </div>
 
+              <div className="mb-3">
+                {photo && (
+                  <div className="text-center">
+                    <img
+                      src={URL.createObjectURL(photo)}
+                      alt="product_photo"
+                      height={"200px"}
+                      className="img img-responsive"
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div className="mb-3">
+                <input
+                  type="text"
+                  value={name}
+                  placeholder="write a name"
+                  className="form-control"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+
+              <div className="mb-3">
+                <textarea
+                  type="text"
+                  value={description}
+                  placeholder="write a description"
+                  className="form-control"
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+
+              <div className="mb-3">
+                <input
+                  type="number"
+                  value={price}
+                  placeholder="write a Price"
+                  className="form-control"
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </div>
+
+              <div className="mb-3">
+                <input
+                  type="number"
+                  value={quantity}
+                  placeholder="write a quantity"
+                  className="form-control"
+                  onChange={(e) => setQuantity(e.target.value)}
+                />
+              </div>
+
               
 
             </div>
