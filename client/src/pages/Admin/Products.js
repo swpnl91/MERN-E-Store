@@ -10,10 +10,11 @@ import { Link } from "react-router-dom";
 
 const Products = () => {
   
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);   // basically getting list of products as an array
 
   // Function to get all the products
   const getAllProducts = async () => {
+    
     try {
       const { data } = await axios.get("/api/v1/product/get-products");
       setProducts(data.products);
