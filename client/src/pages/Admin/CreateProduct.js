@@ -21,6 +21,19 @@ const CreateProduct = () => {
   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
 
+  // Get all categories
+  const getAllCategory = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/category/get-categories");
+      if (data?.success) {
+        setCategories(data?.category);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong while getting catgeories");
+    }
+  };
+
 
 
   return (
