@@ -24,7 +24,13 @@ const Products = () => {
           <AdminMenu />
         </div>
         
-        
+        <div className="col-md-9 ">
+          
+          <h1 className="text-center">List of Products</h1>
+          
+          
+
+        </div>
 
       </div>
 
