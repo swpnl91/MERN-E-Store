@@ -99,7 +99,6 @@ const UpdateProduct = () => {
       if (data?.success) {
         toast.success("Product Updated Successfully");
         navigate("/dashboard/admin/products");
-        toast.error(data?.message);
       } else {
         toast.error(data?.message);
       }
