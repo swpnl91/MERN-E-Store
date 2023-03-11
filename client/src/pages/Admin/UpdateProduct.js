@@ -143,7 +143,17 @@ const UpdateProduct = () => {
                 </Select>
               </div>
 
-              
+              <div className="mb-3">
+                <button className="btn btn-primary" onClick={handleUpdate}>
+                  UPDATE PRODUCT
+                </button>
+              </div>
+
+              <div className="mb-3">
+                <button className="btn btn-danger" onClick={handleDelete}>
+                  DELETE PRODUCT
+                </button>
+              </div>
 
             </div>
 
