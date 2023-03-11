@@ -45,6 +45,7 @@ const UpdateProduct = () => {
       setCategory(data.product.category._id);
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong while getting the product details.");
     }
   };
 
@@ -53,6 +54,24 @@ const UpdateProduct = () => {
     getSingleProduct();
     //eslint-disable-next-line
   }, []);
+
+  // Function for getting all the categories
+  const getAllCategory = async () => {
+    
+    try {
+      
+      const { data } = await axios.get("/api/v1/category/get-category");
+      
+      if (data?.success) {
+        setCategories(data?.category);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong while getting the catgeories.");
+    }
+  };
+
+  
 
   return (
     <Layout title={"Dashboard - Update Product"}>
