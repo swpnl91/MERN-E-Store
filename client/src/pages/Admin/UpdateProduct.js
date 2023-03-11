@@ -76,6 +76,39 @@ const UpdateProduct = () => {
     getAllCategory();
   }, []);
 
+  // Function for updating a product
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    
+    try {
+      
+      const productData = new FormData();
+      
+      productData.append("name", name);
+      productData.append("description", description);
+      productData.append("price", price);
+      productData.append("quantity", quantity);
+      photo && productData.append("photo", photo);
+      productData.append("category", category);
+      
+      const { data } = await axios.put(
+        `/api/v1/product/update-product/${id}`,
+        productData
+      );
+      
+      if (data?.success) {
+        toast.success("Product Updated Successfully");
+        navigate("/dashboard/admin/products");
+        toast.error(data?.message);
+      } else {
+        toast.error(data?.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong while updating the product.");
+    }
+  };
+
 
 
   return (
