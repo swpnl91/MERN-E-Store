@@ -71,7 +71,12 @@ const UpdateProduct = () => {
     }
   };
 
-  
+  // useEffect() to call 'getAllCategory()' so that we get all the categories initially 
+  useEffect(() => {
+    getAllCategory();
+  }, []);
+
+
 
   return (
     <Layout title={"Dashboard - Update Product"}>
