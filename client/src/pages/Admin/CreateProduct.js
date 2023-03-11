@@ -11,6 +11,15 @@ const { Option } = Select;
 
 const CreateProduct = () => {
   
+  const navigate = useNavigate();
+  const [categories, setCategories] = useState([]);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [shipping, setShipping] = useState("");
+  const [photo, setPhoto] = useState("");
 
 
 
