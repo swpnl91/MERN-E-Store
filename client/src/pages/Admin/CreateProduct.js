@@ -112,7 +112,27 @@ const CreateProduct = () => {
                 />
               </div>
 
-              
+              <div className="mb-3">
+                <Select
+                  bordered={false}
+                  placeholder="Select Shipping "
+                  size="large"
+                  showSearch
+                  className="form-select mb-3"
+                  onChange={(value) => {
+                    setShipping(value);
+                  }}
+                >
+                  <Option value="0">No</Option>
+                  <Option value="1">Yes</Option>
+                </Select>
+              </div>
+
+              <div className="mb-3">
+                <button className="btn btn-primary" onClick={handleCreate}>
+                  CREATE PRODUCT
+                </button>
+              </div>
 
             </div>
 
