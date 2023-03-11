@@ -48,6 +48,12 @@ const UpdateProduct = () => {
     }
   };
 
+  // useEffect() to call 'getSingleProduct()' so that we get the details of the product initially 
+  useEffect(() => {
+    getSingleProduct();
+    //eslint-disable-next-line
+  }, []);
+
   return (
     <Layout title={"Dashboard - Update Product"}>
       <div className="container-fluid m-3 p-3">
