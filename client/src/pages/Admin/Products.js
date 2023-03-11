@@ -23,6 +23,11 @@ const Products = () => {
     }
   };
 
+  // useEffect function to call 'getAllProducts()' to populate the page with products initially 
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
 
 
   return (
