@@ -126,6 +126,23 @@ const UpdateProduct = () => {
                 />
               </div>
               
+              <div className="mb-3">
+                <Select
+                  bordered={false}
+                  placeholder="Select Shipping "
+                  size="large"
+                  showSearch
+                  className="form-select mb-3"
+                  onChange={(value) => {
+                    setShipping(value);
+                  }}
+                  value={shipping ? "yes" : "No"}
+                >
+                  <Option value="0">No</Option>
+                  <Option value="1">Yes</Option>
+                </Select>
+              </div>
+
               
 
             </div>
