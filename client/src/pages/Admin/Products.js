@@ -12,6 +12,16 @@ const Products = () => {
   
   const [products, setProducts] = useState([]);
 
+  // Function to get all the products
+  const getAllProducts = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/product/get-products");
+      setProducts(data.products);
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
 
 
 
