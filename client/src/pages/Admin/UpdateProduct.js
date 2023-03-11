@@ -26,7 +26,27 @@ const UpdateProduct = () => {
   const [photo, setPhoto] = useState("");
   const [id, setId] = useState("");
 
-
+  // Function for getting a single product
+  const getSingleProduct = async () => {
+    
+    try {
+      
+      const { data } = await axios.get(
+        `/api/v1/product/get-product/${params.slug}`
+      );
+      
+      setName(data.product.name);
+      setId(data.product._id);
+      setDescription(data.product.description);
+      setPrice(data.product.price);
+      setPrice(data.product.price);
+      setQuantity(data.product.quantity);
+      setShipping(data.product.shipping);
+      setCategory(data.product.category._id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Layout title={"Dashboard - Update Product"}>
