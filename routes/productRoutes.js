@@ -50,7 +50,7 @@ router.get("/get-products", getProductController);
 router.get("/get-product/:slug", getSingleProductController);
 
 // Get a photo
-router.get("/product-photo/:pid", productPhotoController);     // based 'pid' (product id)
+router.get("/product-photo/:pid", productPhotoController);     // based on 'pid' (product id). This API is directly hit by using 'src=".."' in '<img />' tag in 'Products.js'
 
 // Delete product (Admin)
 router.delete("/delete-product/:pid", 
