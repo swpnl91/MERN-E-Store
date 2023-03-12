@@ -84,6 +84,17 @@ const HomePage = () => {
     }
   };
 
+  // Function for filtering by categories
+  const handleFilter = (value, id) => {
+    let all = [...checked];
+    if (value) {
+      all.push(id);
+    } else {
+      all = all.filter((c) => c !== id);
+    }
+    setChecked(all);
+  };
+
 
   return (
     <Layout title={"Our Products - Best offers!"}>
