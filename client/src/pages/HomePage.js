@@ -34,6 +34,19 @@ const HomePage = () => {
             ))}
           </div>
           
+          {/* price filter */}
+          <h4 className="text-center mt-4">Filter By Price</h4>
+          
+          <div className="d-flex flex-column">
+            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+              {Prices?.map((p) => (
+                <div key={p._id}>
+                  <Radio value={p.array}>{p.name}</Radio>
+                </div>
+              ))}
+            </Radio.Group>
+          </div>
+
           
 
         </div>
