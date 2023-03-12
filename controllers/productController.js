@@ -232,3 +232,33 @@ export const updateProductController = async (req, res) => {
   }
 };
 
+// Filtering products
+export const productFiltersController = async (req, res) => {
+  
+  try {
+    
+    const { checked, radio } = req.body;
+    
+    let args = {};    // since we have multiple queries (to be passed to the DB) we're creating an 'args' object
+    
+    if (checked.length > 0) args.category = checked;     // 'checked' is an array with selected/checked categories (for filtering)
+    
+    if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };       // 'radio' is an array with 2 values (that represent the price range) 
+    
+    const products = await productModel.find(args);
+    
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    
+    console.log(error);
+    
+    res.status(400).send({
+      success: false,
+      message: "There was an error while filtering products",
+      error,
+    });
+  }
+};
