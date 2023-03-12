@@ -51,6 +51,16 @@ const HomePage = () => {
     }
   };
 
+  // Function to get total product count
+  const getTotal = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/product/product-count");
+      setTotal(data?.total);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return (
     <Layout title={"Our Products - Best offers!"}>
