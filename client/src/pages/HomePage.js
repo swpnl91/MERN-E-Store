@@ -65,7 +65,11 @@ const HomePage = () => {
     }
   };
 
-
+  // useEffect for calling loadMore()
+  useEffect(() => {
+    if (page === 1) return;
+    loadMore();
+  }, [page]);
 
   // Function for loading more products
   const loadMore = async () => {
