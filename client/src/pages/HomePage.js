@@ -86,6 +86,10 @@ const HomePage = () => {
                     </h5>
                   </div>
 
+                  <p className="card-text ">
+                    {p.description.substring(0, 60)}...
+                  </p>
+
                   
 
                 </div>
