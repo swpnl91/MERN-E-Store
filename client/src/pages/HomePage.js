@@ -18,7 +18,7 @@ const HomePage = () => {
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [checked, setChecked] = useState([]);
+  const [checked, setChecked] = useState([]);      // Is used to store all the categories that are checked, in an array
   const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -44,10 +44,15 @@ const HomePage = () => {
 
   // Function to get all products
   const getAllProducts = async () => {
+    
     try {
+      
       setLoading(true);
+      
       const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
+      
       setLoading(false);
+      
       setProducts(data.products);
     } catch (error) {
       setLoading(false);
@@ -86,13 +91,13 @@ const HomePage = () => {
 
   // Function for filtering by categories
   const handleFilter = (value, id) => {
-    let all = [...checked];
-    if (value) {
+    let all = [...checked];      // basically takes the previously stored categories (from 'checked' array) and stores it in 'all'
+    if (value) {                 // This condition takes care of checking the boxes
       all.push(id);
-    } else {
+    } else {                     // The 'else' condition takes care of 'unchecking' the boxes wherein only the 'id' is received, the 'value' isn't sent?!!!!!
       all = all.filter((c) => c !== id);
     }
-    setChecked(all);
+    setChecked(all);            // We assign the final filtered 'all' array to 'checked' again
   };
 
   // useEffect for rendering all products conditionally
@@ -119,6 +124,7 @@ const HomePage = () => {
   };
 
 
+
   return (
     <Layout title={"Our Products - Best offers!"}>
       
@@ -139,9 +145,10 @@ const HomePage = () => {
           
           <div className="d-flex flex-column">
             {categories?.map((c) => (
+              // <Checkbox /> basically gets us those checkboxes that we can use to filter according to the categories
               <Checkbox
                 key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
+                onChange={(e) => handleFilter(e.target.checked, c._id)}    // 'e.target.checked' is the target value or 'category name'. We also need its 'id'
               >
                 {c.name}
               </Checkbox>
