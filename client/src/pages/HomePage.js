@@ -96,6 +96,21 @@ const HomePage = () => {
   };
 
 
+
+  // Function for getting filtered product
+  const filterProduct = async () => {
+    try {
+      const { data } = await axios.post("/api/v1/product/product-filters", {
+        checked,
+        radio,
+      });
+      setProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   return (
     <Layout title={"Our Products - Best offers!"}>
       
