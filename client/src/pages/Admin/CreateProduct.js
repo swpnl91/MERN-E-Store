@@ -5,7 +5,7 @@ import AdminMenu from "./../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
-import UserMenu from '../../components/Layout/UserMenu';
+import UserMenu from '../../components/Layout/UserMenu';         // ===============================
 const { Option } = Select;     // Comes from 'ant-design'. Will be used to create dropdown menu
 
 
@@ -28,7 +28,7 @@ const CreateProduct = () => {
     try {
       const { data } = await axios.get("/api/v1/category/get-categories");
       if (data?.success) {
-        setCategories(data?.category);    // 'data?.category' is optional chaining. Basically it means IF 'data' exists THEN 'setCategories(data.category)'
+        setCategories(data?.category);    // 'data?.category' (which is an array btw) is optional chaining. Basically it means IF 'data' exists THEN 'setCategories(data.category)'
       }
     } catch (error) {
       console.log(error);
@@ -54,7 +54,7 @@ const CreateProduct = () => {
       productData.append("price", price);
       productData.append("quantity", quantity);
       productData.append("photo", photo);
-      productData.append("category", category);
+      productData.append("category", category);          // Here 'category' is the 'category id'
 
       const { data } = await axios.post(           // don't forget the 'await' keyword and destructuring of 'data'
         "/api/v1/product/create-product",
@@ -96,12 +96,13 @@ const CreateProduct = () => {
                 size="large"
                 showSearch
                 className="form-select mb-3"    // bootstrap className 'mb-3' -> margin from bottom
-                onChange={(value) => {          // 'value' comes from ant-design. It's basically the value chosen from the dropdown menu and comes from 'value' in '<Option />'.
-                  setCategory(value);           // 'onChange' helps us to get that 'value' and assign it to the product to be created.
+                onChange={(value) => {          // 'value' comes from ant-design. It's basically the value ('c._id') of the chosen option ('{c.name}') from the dropdown menu from '<Option />'.
+                  setCategory(value);           // 'onChange' helps us to get that 'value' ('c._id') and assign it to the product to be created.
                 }}
               >
                 {categories?.map((c) => (
-                  // We're using the 'value' prop in '<Option />' to use the 'id' of the category based on which we'll update it (it's used in 'onChange' in '<Select />' above to 'setCategory()').
+                  // So since <Select /> doesn't have a 'value' prop, only the placeholder is displayed. It uses the 'value' ('c._id') provided by <Option />.  
+                  // We're using the 'value' prop in '<Option />' to use the 'id' of the category, to be assigned to 'category (the state)' so that we can use it to create the product (it's used in 'onChange' in '<Select />' above to 'setCategory()'.
                   <Option key={c._id} value={c._id}>     
                     {c.name}
                   </Option>
@@ -114,7 +115,7 @@ const CreateProduct = () => {
                   <input
                     type="file"
                     name="photo"
-                    accept="image/*"    // ONLY 'images' ar accepted. '*' means any type of image ('png', 'jpg', 'jpeg' etc.)
+                    accept="image/*"    // ONLY 'images' are accepted. '*' means any type of image ('png', 'jpg', 'jpeg' etc.)
                     onChange={(e) => setPhoto(e.target.files[0])}    // Unlike the 'value' prop in '<Select />' above, we get 'e'(event) with '<input />'. So to get the value/file we've to access 'e.target.files[0]' (as it's an image we've to access the 'files' array and its first element)
                     hidden     // 'hidden' attribute added to this 'input' field
                   />

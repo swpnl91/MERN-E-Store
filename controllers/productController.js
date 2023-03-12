@@ -133,7 +133,7 @@ export const productPhotoController = async (req, res) => {
     const product = await productModel.findById(req.params.pid).select("photo");       // '.select("photo")' - this basically ONLY gets the photo
     
     // if 'product.photo.data' exists
-    if (product.photo.data) {       // 'product.photo.data' is basically the actual 'photo'
+    if (product.photo.data) {       // 'product.photo.data' is basically the actual 'data' that translates into 'photo'
       res.set("Content-type", product.photo.contentType);       // setting the 'Content-type'
       return res.status(200).send(product.photo.data);
     }
@@ -194,8 +194,8 @@ export const updateProductController = async (req, res) => {
         return res.status(500).send({ message: "Category is Required" });
       case !quantity:
         return res.status(500).send({ message: "Quantity is Required" });
-      case !photo:
-        return res.status(500).send({ message: "Photo Is Required" });
+      // case !photo:
+      //   return res.status(500).send({ message: "Photo Is Required" });            // Had to remove this case because otherwise everytime the product is updated without changing the photo, it threw an error.
       case photo && photo.size > 1000000:
         return res
           .status(500)
