@@ -13,6 +13,20 @@ import { AiOutlineReload } from "react-icons/ai";
 
 const HomePage = () => {
   
+
+  const navigate = useNavigate();
+  const [cart, setCart] = useCart();
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [checked, setChecked] = useState([]);
+  const [radio, setRadio] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+
+
+
   return (
     <Layout title={"Our Products - Best offers!"}>
       
