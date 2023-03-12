@@ -95,6 +95,10 @@ const HomePage = () => {
     setChecked(all);
   };
 
+  // useEffect for rendering all products conditionally
+  useEffect(() => {
+    if (!checked.length || !radio.length) getAllProducts();
+  }, [checked.length, radio.length]);
 
 
   // Function for getting filtered product
