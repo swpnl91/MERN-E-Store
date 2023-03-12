@@ -100,6 +100,10 @@ const HomePage = () => {
     if (!checked.length || !radio.length) getAllProducts();
   }, [checked.length, radio.length]);
 
+  // useEffect for calling filterProduct()
+  useEffect(() => {
+    if (checked.length || radio.length) filterProduct();
+  }, [checked, radio]);
 
   // Function for getting filtered product
   const filterProduct = async () => {
