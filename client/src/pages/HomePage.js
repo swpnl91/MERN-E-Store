@@ -36,7 +36,11 @@ const HomePage = () => {
     }
   };
 
-
+  // useEffect to call getAllCategory/getTotal
+  useEffect(() => {
+    getAllCategory();
+    getTotal();
+  }, []);
 
   // Function to get all products
   const getAllProducts = async () => {
