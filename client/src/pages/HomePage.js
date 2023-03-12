@@ -24,7 +24,17 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-
+  // Function to get all categories
+  const getAllCategory = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/category/get-categories");
+      if (data?.success) {
+        setCategories(data?.category);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   return (
