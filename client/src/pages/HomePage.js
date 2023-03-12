@@ -37,6 +37,21 @@ const HomePage = () => {
   };
 
 
+
+  // Function to get all products
+  const getAllProducts = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
+      setLoading(false);
+      setProducts(data.products);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+
   return (
     <Layout title={"Our Products - Best offers!"}>
       
