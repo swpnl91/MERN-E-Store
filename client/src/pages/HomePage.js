@@ -19,7 +19,7 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);      // Is used to store all the categories that are checked, in an array
-  const [radio, setRadio] = useState([]);
+  const [radio, setRadio] = useState([]);          // Is used to store the price range for filtering on the basis of price of the products
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -141,6 +141,7 @@ const HomePage = () => {
         
         <div className="col-md-3 filters">
           
+          {/* Category filter */}
           <h4 className="text-center">Filter By Category</h4>
           
           <div className="d-flex flex-column">
@@ -155,14 +156,16 @@ const HomePage = () => {
             ))}
           </div>
           
-          {/* price filter */}
+          {/* Price filter */}
           <h4 className="text-center mt-4">Filter By Price</h4>
           
           <div className="d-flex flex-column">
+            {/* Since it's a radio button only one range will be selected  */}
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {Prices?.map((p) => (
                 <div key={p._id}>
-                  <Radio value={p.array}>{p.name}</Radio>
+                  {/* 'p.array' is an array with the price range which is passed to 'onChange' in <Radio.Group /> */}
+                  <Radio value={p.array}>{p.name}</Radio>  
                 </div>
               ))}
             </Radio.Group>

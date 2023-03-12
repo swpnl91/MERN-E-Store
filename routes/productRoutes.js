@@ -7,6 +7,7 @@ import {
   getSingleProductController,
 
 
+  productFiltersController,
 
   productPhotoController,
   
@@ -58,6 +59,9 @@ router.delete("/delete-product/:pid",
   isAdmin, 
   deleteProductController
 );
+
+// For filtering products
+router.post("/product-filters", productFiltersController);
 
 
 
