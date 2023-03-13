@@ -102,21 +102,23 @@ const HomePage = () => {
 
   // useEffect for rendering all products conditionally
   useEffect(() => {
-    if (!checked.length || !radio.length) getAllProducts();
+    if (!checked.length || !radio.length) getAllProducts();    // basically adds a condition that only calls 'getAllProducts()' when 'checked'/'radio' arrays are empty or in other words there's no filter applied
   }, [checked.length, radio.length]);
 
   // useEffect for calling filterProduct()
   useEffect(() => {
-    if (checked.length || radio.length) filterProduct();
+    if (checked.length || radio.length) filterProduct();  // basically adds a condition that only calls 'filterProduct()' when 'checked'/'radio' arrays are NOT empty or in other words there IS a filter applied
   }, [checked, radio]);
 
   // Function for getting filtered product
   const filterProduct = async () => {
+    
     try {
       const { data } = await axios.post("/api/v1/product/product-filters", {
         checked,
         radio,
       });
+      
       setProducts(data?.products);
     } catch (error) {
       console.log(error);
@@ -174,7 +176,7 @@ const HomePage = () => {
           <div className="d-flex flex-column">
             <button
               className="btn btn-danger"
-              onClick={() => window.location.reload()}
+              onClick={() => window.location.reload()}    // we're basically refreshing/reloading the page that removes all the applied filters
             >
               RESET FILTERS
             </button>
@@ -211,7 +213,8 @@ const HomePage = () => {
                   </div>
 
                   <p className="card-text ">
-                    {p.description.substring(0, 60)}...
+                    {/* limiting the description  */}
+                    {p.description.substring(0, 60)}... 
                   </p>
 
                   <div className="card-name-price">

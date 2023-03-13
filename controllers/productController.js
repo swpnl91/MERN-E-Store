@@ -239,11 +239,14 @@ export const productFiltersController = async (req, res) => {
     
     const { checked, radio } = req.body;
     
+    
     let args = {};    // since we have multiple queries (to be passed to the DB) we're creating an 'args' object
     
+    // It can happen that the user wants to filter the products list based on category AND price, ONLY category, OR ONLY price. Hence we're using conditions below
     if (checked.length > 0) args.category = checked;     // 'checked' is an array with selected/checked categories (for filtering)
     
-    if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };       // 'radio' is an array with 2 values (that represent the price range) 
+    // Only 'radio.length' is used because we're gonna get only one array with 2 elements in it. As only one price range can be chosen.
+    if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };       // 'radio' is an array with 2 elements/values (that represent the price range) 
     
     const products = await productModel.find(args);
     
