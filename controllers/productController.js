@@ -320,3 +320,32 @@ export const productListController = async (req, res) => {
     });
   }
 };
+
+// For searching products
+export const searchProductController = async (req, res) => {
+  
+  try {
+    
+    const { keyword } = req.params;
+    
+    const results = await productModel
+      .find({
+        $or: [                // special query in mongoose
+          { name: { $regex: keyword, $options: "i" } },          // searches for the keyword in the 'name' field. '$options: "i"' makes it case insensitive.
+          { description: { $regex: keyword, $options: "i" } },   // searches for the keyword in the 'description' field
+        ],
+      })
+      .select("-photo");     // Deselecting 'photo'
+    
+      res.json(results);    // sending response
+  } catch (error) {
+    
+    console.log(error);
+    
+    res.status(400).send({
+      success: false,
+      message: "Error In Search Product API",
+      error,
+    });
+  }
+};
