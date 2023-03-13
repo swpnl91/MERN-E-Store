@@ -9,6 +9,7 @@ import {
 
   productCountController,
   productFiltersController,
+  productListController,
 
   productPhotoController,
   
@@ -66,6 +67,9 @@ router.post("/product-filters", productFiltersController);
 
 // For keeping a product count
 router.get("/product-count", productCountController);
+
+// Getting products per page
+router.get("/product-list/:page", productListController);
 
 
 
