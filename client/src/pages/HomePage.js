@@ -16,13 +16,13 @@ const HomePage = () => {
 
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);         // Array of products on a given page
+  const [categories, setCategories] = useState([]);     // Array of all the categories
   const [checked, setChecked] = useState([]);      // Is used to store all the categories that are checked, in an array
   const [radio, setRadio] = useState([]);          // Is used to store the price range for filtering on the basis of price of the products
-  const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [total, setTotal] = useState(0);            // To keep a tab on the quantity/total count of the products
+  const [page, setPage] = useState(1);              // To keep a tab on the page number
+  const [loading, setLoading] = useState(false);    // To keep show the 'loading' state
 
   // Function to get all categories
   const getAllCategory = async () => {
@@ -49,7 +49,7 @@ const HomePage = () => {
       
       setLoading(true);
       
-      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
+      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);    // Basically gets all products on a given 'page' and stores it in the 'products' array ('setProducts(data.products)')
       
       setLoading(false);
       
@@ -72,17 +72,22 @@ const HomePage = () => {
 
   // useEffect for calling loadMore()
   useEffect(() => {
-    if (page === 1) return;
+    if (page === 1) return;  // 'loadMore()' is not called while the user is on the first page 
     loadMore();
-  }, [page]);
+  }, [page]);        // Everytime the dependency - 'page' changes 'loadMore()' is called thus appending the new list of products from the next page to the existing one 
 
   // Function for loading more products
   const loadMore = async () => {
+    
     try {
+      
       setLoading(true);
+      
       const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
+      
       setLoading(false);
-      setProducts([...products, ...data?.products]);
+      
+      setProducts([...products, ...data?.products]);    // we're basically retaining the existing products AND appending the new products (from the next page) to the first one. So that all the products (even from the previous pages) are shown
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -190,7 +195,7 @@ const HomePage = () => {
           
           <div className="d-flex flex-wrap">
             
-            {products?.map((p) => (
+            {products?.map((p) => (       
               
               <div className="card m-2" key={p._id}>
                 
@@ -251,12 +256,12 @@ const HomePage = () => {
           </div>
           
           <div className="m-2 p-3">
-            {products && products.length < total && (
+            {products && products.length < total && (      // If the 'products.length === total' that means we've only 6 products (set in backend for displaying max 6 products per page) in DB/inventory then 'Load more' button won't be shown
               <button
                 className="btn loadmore"
                 onClick={(e) => {
                   e.preventDefault();
-                  setPage(page + 1);
+                  setPage(page + 1);    // changes 'page' to the next one and when you reload/refresh it goes back to the 1st page as the default value of 'page' (the state) is '1'
                 }}
               >
                 {loading ? (
@@ -264,7 +269,7 @@ const HomePage = () => {
                 ) : (
                   <>
                     {" "}
-                    Loadmore <AiOutlineReload />
+                    Load more <AiOutlineReload />
                   </>
                 )}
               </button>

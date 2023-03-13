@@ -14,7 +14,7 @@ import {
   productPhotoController,
   
 
-
+  searchProductController,
   updateProductController,
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
@@ -70,6 +70,9 @@ router.get("/product-count", productCountController);
 
 // Getting products per page
 router.get("/product-list/:page", productListController);
+
+// For searching products
+router.get("/search/:keyword", searchProductController);
 
 
 

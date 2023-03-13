@@ -294,15 +294,15 @@ export const productListController = async (req, res) => {
   
   try {
     
-    const perPage = 6;
+    const perPage = 6;      // Max number of products to be shown on a page
     
-    const page = req.params.page ? req.params.page : 1;
+    const page = req.params.page ? req.params.page : 1;      // 'req.params.page' doesn't exist then make it page 1 (1st page)
     
     const products = await productModel
       .find({})
-      .select("-photo")               // not rendering 'photo'
+      .select("-photo")               // not rendering or deselecting 'photo'
       .skip((page - 1) * perPage)    // it skips these many products to arrive at the list of products on a given page
-      .limit(perPage)
+      .limit(perPage)                // will display only 6 products per page
       .sort({ createdAt: -1 });   // for sorting in descending order using 'createdAt'
     
     res.status(200).send({
@@ -315,7 +315,7 @@ export const productListController = async (req, res) => {
     
     res.status(400).send({
       success: false,
-      message: "Error in per page ctrl",
+      message: "Error in loading page with the product-list",
       error,
     });
   }
