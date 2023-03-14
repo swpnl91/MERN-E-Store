@@ -1,18 +1,16 @@
 import express from "express";
 import {
   
+  
   createProductController,
   deleteProductController,
   getProductController,
   getSingleProductController,
-
-
+  productCategoryController,
   productCountController,
   productFiltersController,
   productListController,
-
   productPhotoController,
-  
   relatedProductController,
   searchProductController,
   updateProductController,
@@ -76,6 +74,9 @@ router.get("/search/:keyword", searchProductController);
 
 // For similar products
 router.get("/related-product/:pid/:cid", relatedProductController);
+
+// For getting products based on category
+router.get("/product-category/:slug", productCategoryController);
 
 
 
