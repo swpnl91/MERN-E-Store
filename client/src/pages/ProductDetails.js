@@ -16,6 +16,24 @@ const ProductDetails = () => {
   return (
     <Layout>
       
+      <div className="row container product-details">
+        
+        <div className="col-md-6">
+          <img
+            src={`/api/v1/product/product-photo/${product._id}`}
+            className="card-img-top"
+            alt={product.name}
+            height="300"
+            width={"350px"}
+          />
+        </div>
+
+        
+
+      </div>
+
+      
+
     </Layout>
   );
 };
