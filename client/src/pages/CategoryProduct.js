@@ -15,7 +15,7 @@ const CategoryProduct = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
 
-  // useEffect for calling getProductsByCategory()
+  // useEffect for calling getProductsByCategory() initially
   useEffect(() => {
     if (params?.slug) getProductsByCategory();
   }, [params?.slug]);
@@ -89,7 +89,7 @@ const CategoryProduct = () => {
                         More Details
                       </button>
                       
-                      {/* ///////// */}
+                      {/* ////------add to cart----///// */}
 
                     </div>
 
@@ -99,7 +99,7 @@ const CategoryProduct = () => {
               ))}
             </div>
  
-            {/* //////// */}
+            {/* ////------Load more-----//// */}
 
           </div>
         </div>

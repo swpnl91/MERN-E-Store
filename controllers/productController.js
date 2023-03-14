@@ -386,9 +386,9 @@ export const relatedProductController = async (req, res) => {
 export const productCategoryController = async (req, res) => {
   try {
     
-    const category = await categoryModel.findOne({ slug: req.params.slug });
+    const category = await categoryModel.findOne({ slug: req.params.slug });    // find category based on the slug in params  
     
-    const products = await productModel.find({ category }).populate("category");
+    const products = await productModel.find({ category }).populate("category");   // find all the products based on the category and also populate the category field
     
     res.status(200).send({
       success: true,
