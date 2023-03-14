@@ -337,7 +337,7 @@ export const searchProductController = async (req, res) => {
       })
       .select("-photo");     // Deselecting 'photo'
     
-      res.json(results);    // sending response
+      res.json(results);    // sending response as array?  ++++++++++++++++++++++++++++++
   } catch (error) {
     
     console.log(error);
