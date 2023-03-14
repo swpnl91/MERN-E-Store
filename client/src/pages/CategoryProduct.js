@@ -15,6 +15,28 @@ const CategoryProduct = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
 
+  // useEffect for calling getProductsByCategory()
+  useEffect(() => {
+    if (params?.slug) getProductsByCategory();
+  }, [params?.slug]);
+
+
+  // Function for getting products by category
+  const getProductsByCategory = async () => {
+    
+    try {
+      
+      const { data } = await axios.get(
+        `/api/v1/product/product-category/${params.slug}`
+      );
+      
+      setProducts(data?.products);
+      setCategory(data?.category);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return (
     <Layout>
