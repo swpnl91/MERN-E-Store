@@ -359,12 +359,12 @@ export const relatedProductController = async (req, res) => {
     
     const products = await productModel
       .find({
-        category: cid,
-        _id: { $ne: pid },
+        category: cid,         // Finds all products within the given category/'category id'
+        _id: { $ne: pid },     // To NOT show the product itself in the 'similar products' list
       })
-      .select("-photo")
-      .limit(3)
-      .populate("category");
+      .select("-photo")       // deselect 'photo'
+      .limit(3)               // So that only 3 products would be shown
+      .populate("category");    // it basically populates the 'category' (with its details) field instead of just getting its 'id'
     
       res.status(200).send({
       success: true,

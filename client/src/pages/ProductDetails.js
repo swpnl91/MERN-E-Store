@@ -20,10 +20,13 @@ const ProductDetails = () => {
   // Function for getting product details
   const getProduct = async () => {
     try {
+      
       const { data } = await axios.get(
         `/api/v1/product/get-product/${params.slug}`
       );
+      
       setProduct(data?.product);
+      
       getSimilarProduct(data?.product._id, data?.product.category._id);
     } catch (error) {
       console.log(error);
@@ -33,9 +36,11 @@ const ProductDetails = () => {
   // Function for getting similar products
   const getSimilarProduct = async (pid, cid) => {
     try {
+      
       const { data } = await axios.get(
         `/api/v1/product/related-product/${pid}/${cid}`
       );
+      
       setRelatedProducts(data?.products);
     } catch (error) {
       console.log(error);
@@ -87,7 +92,7 @@ const ProductDetails = () => {
         
         <h4>Similar Products ➡️</h4>
         {relatedProducts.length < 1 && (
-          <p className="text-center">No Similar Products found</p>
+          <p className="text-center">No Similar Products Found</p>
         )}
         
         <div className="d-flex flex-wrap">
@@ -139,8 +144,7 @@ const ProductDetails = () => {
         </div>
 
       </div>
-      
-
+    
     </Layout>
   );
 };
