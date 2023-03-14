@@ -10,7 +10,10 @@ import axios from "axios";
 const CategoryProduct = () => {
   
   
-  
+  const params = useParams();
+  const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState([]);
 
 
   return (
