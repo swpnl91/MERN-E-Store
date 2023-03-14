@@ -13,7 +13,7 @@ import {
 
   productPhotoController,
   
-
+  relatedProductController,
   searchProductController,
   updateProductController,
 } from "../controllers/productController.js";
@@ -73,6 +73,9 @@ router.get("/product-list/:page", productListController);
 
 // For searching products
 router.get("/search/:keyword", searchProductController);
+
+// For similar products
+router.get("/related-product/:pid/:cid", relatedProductController);
 
 
 

@@ -12,9 +12,9 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
 
-  // useEffect for getting initial product details
+  // useEffect for getting product details initially
   useEffect(() => {
-    if (params?.slug) getProduct();
+    if (params?.slug) getProduct();     // 'getProduct()' gets called only when we get a 'slug' from the url
   }, [params?.slug]);
 
   // Function for getting product details
