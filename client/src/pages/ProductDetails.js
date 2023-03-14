@@ -30,6 +30,18 @@ const ProductDetails = () => {
     }
   };
 
+  // Function for getting similar products
+  const getSimilarProduct = async (pid, cid) => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/product/related-product/${pid}/${cid}`
+      );
+      setRelatedProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return (
     <Layout>
