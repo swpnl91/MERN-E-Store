@@ -4,6 +4,8 @@ import useCategory from "../hooks/useCategory";
 import Layout from "../components/Layout/Layout";
 
 
+// This page is just to display all the 'categories' 
+
 const Categories = () => {
   
   const categories = useCategory();
