@@ -15,7 +15,7 @@ const HomePage = () => {
   
 
   const navigate = useNavigate();
-  const [cart, setCart] = useCart();
+  const [cart, setCart] = useCart();                    // using context to add items to cart
   const [products, setProducts] = useState([]);         // Array of products on a given page
   const [categories, setCategories] = useState([]);     // Array of all the categories
   const [checked, setChecked] = useState([]);      // Is used to store all the categories that are checked, in an array
@@ -234,12 +234,12 @@ const HomePage = () => {
                     <button
                       className="btn btn-dark ms-1"
                       onClick={() => {
-                        setCart([...cart, p]);
+                        setCart([...cart, p]);       // While keeping the existing products in the 'cart' array, we add a new product ('p' is the product)
                         localStorage.setItem(
                           "cart",
-                          JSON.stringify([...cart, p])
+                          JSON.stringify([...cart, p])      // We're basically storing the cart in localStorage
                         );
-                        toast.success("Item Added to cart");
+                        toast.success("Item added to cart");
                       }}
                     >
                       ADD TO CART
