@@ -7,7 +7,10 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
   
-
+  const params = useParams();
+  const navigate = useNavigate();
+  const [product, setProduct] = useState({});
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
 
   return (
