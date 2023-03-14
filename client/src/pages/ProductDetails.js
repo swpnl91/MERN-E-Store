@@ -12,6 +12,24 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
 
+  // useEffect for getting initial product details
+  useEffect(() => {
+    if (params?.slug) getProduct();
+  }, [params?.slug]);
+
+  // Function for getting product details
+  const getProduct = async () => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/product/get-product/${params.slug}`
+      );
+      setProduct(data?.product);
+      getSimilarProduct(data?.product._id, data?.product.category._id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return (
     <Layout>
@@ -101,7 +119,7 @@ const ProductDetails = () => {
                   </button> */}
 
                 </div>
-                
+
               </div>
               
             </div>
