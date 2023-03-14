@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "./../components/Layout/Layout";
-
+import { useSearch } from "../context/search";
 
 
 
