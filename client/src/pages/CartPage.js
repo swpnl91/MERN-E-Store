@@ -27,6 +27,31 @@ const CartPage = () => {
 
     <Layout>
       
+      <div className=" cart-page">
+        
+        <div className="row">
+          <div className="col-md-12">
+            
+            <h1 className="text-center bg-light p-2 mb-1">
+              {!auth?.user
+                ? "Hello Guest!"
+                : `Hello  ${auth?.token && auth?.user?.name}`}
+              <p className="text-center">
+                {cart?.length
+                  ? `You have ${cart.length} item/items in your cart ${
+                      auth?.token ? "" : "Please login to checkout!"
+                    }`
+                  : " Your Cart Is Empty"}
+              </p>
+            </h1>
+
+          </div>
+        </div>
+
+        
+
+      </div>
+
     </Layout>
   );
 };
