@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
-import { Badge } from "antd";
+import { Badge } from "antd";      // It's kind of like FB 'notifications'
 
 
 const Header = () => {

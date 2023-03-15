@@ -14,13 +14,28 @@ import toast from "react-hot-toast";
 
 const CartPage = () => {
   
-  const [auth, setAuth] = useAuth();
+  const [auth, setAuth] = useAuth();     // For checking whether the user is logged in or not
   const [cart, setCart] = useCart();
   const [clientToken, setClientToken] = useState("");
   const [instance, setInstance] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   
+
+
+
+  // Remove/Delete item from the cart
+  const removeCartItem = (pid) => {
+    try {
+      let myCart = [...cart];     // creating a variable so as not to change the 'cart' array directly
+      let index = myCart.findIndex((item) => item._id === pid);      // find the index of the product that has the same 'id' as that which is passed in the function ('p._id/pid')
+      myCart.splice(index, 1);    // basically removes the item at the given index from the array
+      setCart(myCart);
+      localStorage.setItem("cart", JSON.stringify(myCart));     // saving the new array with the item removed, in localStorage
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   return (
@@ -33,12 +48,15 @@ const CartPage = () => {
           <div className="col-md-12">
             
             <h1 className="text-center bg-light p-2 mb-1">
+              {/* Condition for checking whether the user is logged in or not */}
               {!auth?.user
                 ? "Hello Guest!"
                 : `Hello  ${auth?.token && auth?.user?.name}`}
               <p className="text-center">
+                {/* There are two conditions (ternary operators) used. One within the other (nested).  */}
+                {/* Notice that the second condition (the one with 'Please login...') is enclosed in '${}'. It won't consider it to be 'nested' otherwise.  */}
                 {cart?.length
-                  ? `You have ${cart.length} item/items in your cart ${
+                  ? `You have ${cart.length} item/items in your cart. ${
                       auth?.token ? "" : "Please login to checkout!"
                     }`
                   : " Your Cart Is Empty"}
@@ -65,7 +83,7 @@ const CartPage = () => {
                   </div>
                   <div className="col-md-4">
                     <p>{p.name}</p>
-                    <p>{p.description.substring(0, 30)}</p>
+                    <p>{p.description.substring(0, 30)}</p> 
                     <p>Price : {p.price}</p>
                   </div>
                   <div className="col-md-4 cart-remove-btn">
