@@ -22,6 +22,21 @@ const CartPage = () => {
   const navigate = useNavigate();
   
 
+  // Function to calculate total price of the products in the cart
+  const totalPrice = () => {
+    try {
+      let total = 0;
+      cart?.map((item) => {
+        total = total + item.price;
+      });
+      return total.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   // Remove/Delete item from the cart
@@ -105,6 +120,7 @@ const CartPage = () => {
               
               <p>Total | Checkout | Payment</p>
               
+              {/* Horizontal row */}
               <hr />
               
               <h4>Total : {totalPrice()} </h4>
@@ -145,7 +161,9 @@ const CartPage = () => {
                   )}
                 </div>
               )}
-              
+
+              {/* ////////-------Payment section-------////////// */}
+
             </div>
 
           </div>
