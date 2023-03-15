@@ -21,7 +21,7 @@ const Profile = () => {
 
   // Get user data
   useEffect(() => {
-    const { email, name, phone, address } = auth?.user;
+    const { email, name, phone, address } = auth?.user;      // Getting user from 'auth' context
     setName(name);
     setPhone(phone);
     setEmail(email);
@@ -95,7 +95,7 @@ const Profile = () => {
                     className="form-control"
                     id="exampleInputEmail1"
                     placeholder="Enter Your Email "
-                    disabled
+                    disabled     // So that it cannot be edited
                   />
                 </div>
 

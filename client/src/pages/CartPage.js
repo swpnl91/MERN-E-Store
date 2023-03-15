@@ -123,6 +123,7 @@ const CartPage = () => {
               {/* Horizontal row */}
               <hr />
               
+              {/* You directly call the function (totalPrice()) so that it calculates for everytime the page is rendered */}
               <h4>Total : {totalPrice()} </h4>
               
               {auth?.user?.address ? (
