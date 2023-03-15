@@ -39,7 +39,7 @@ router.get("/admin-auth", requireSignIn,  isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });
 
-// Routing for updating profile (User/Admin); Method - PUT
+// Routing for updating profile (User); Method - PUT
 router.put("/profile", requireSignIn, updateProfileController);
 
 
