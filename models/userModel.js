@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     address: {
-      type: {},
+      type: {},          // It's kept as an object and not as a string to accommodate the multiple-line nature of an address
       required: true,
     },
     answer: {

@@ -212,8 +212,8 @@ export const updateProfileController = async (req, res) => {
     
     const user = await userModel.findById(req.user._id); // We do get 'user' in 'req'
     
-    // Condition for password
-    if (!password || password?.length < 6) {
+    // Condition for password. Since 'password' (or none of the fields in fact) is not required to be updated in the 'update profile' section 
+    if (password && password?.length < 6) {
       return res.json({ error: "Password is required and should be 6 characters long" });
     }
     

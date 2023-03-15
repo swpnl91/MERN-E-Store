@@ -34,6 +34,7 @@ const Profile = () => {
     e.preventDefault();
     
     try {
+      
       const { data } = await axios.put("/api/v1/auth/profile", {
         name,
         email,
@@ -41,17 +42,24 @@ const Profile = () => {
         phone,
         address,
       });
-      if (data?.errro) {
+      
+      if (data?.error) {
         toast.error(data?.error);
       } else {
         setAuth({ ...auth, user: data?.updatedUser });
-        let ls = localStorage.getItem("auth");
-        ls = JSON.parse(ls);
-        ls.user = data.updatedUser;
-        localStorage.setItem("auth", JSON.stringify(ls));
+        
+        let ls = localStorage.getItem("auth");    // We're getting whatever's stored in localStorage under 'auth'
+        
+        ls = JSON.parse(ls);    // We parse it so as to use it normally as it's stored as a string in localStorage
+        
+        ls.user = data.updatedUser;      // We update only the user as we also have token which is not to be touched 
+        
+        localStorage.setItem("auth", JSON.stringify(ls));  // We store it again in the localStorage as a string
+        
         toast.success("Profile Updated Successfully");
       }
     } catch (error) {
+      
       console.log(error);
       toast.error("Something went wrong");
     }
