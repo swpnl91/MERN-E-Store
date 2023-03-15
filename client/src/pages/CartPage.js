@@ -55,6 +55,7 @@ const CartPage = () => {
               <p className="text-center">
                 {/* There are two conditions (ternary operators) used. One within the other (nested).  */}
                 {/* Notice that the second condition (the one with 'Please login...') is enclosed in '${}'. It won't consider it to be 'nested' otherwise.  */}
+                {/* If 'cart?.length' exists/ If cart?.length > 0 */}
                 {cart?.length
                   ? `You have ${cart.length} item/items in your cart. ${
                       auth?.token ? "" : "Please login to checkout!"
@@ -98,7 +99,54 @@ const CartPage = () => {
               ))}
             </div>
             
-            {/* //// */}
+            <div className="col-md-5 cart-summary ">
+              
+              <h2>Cart Summary</h2>
+              
+              <p>Total | Checkout | Payment</p>
+              
+              <hr />
+              
+              <h4>Total : {totalPrice()} </h4>
+              
+              {auth?.user?.address ? (
+                <>
+                  <div className="mb-3">
+                    <h4>Current Address</h4>
+                    <h5>{auth?.user?.address}</h5>
+                    <button
+                      className="btn btn-outline-warning"
+                      onClick={() => navigate("/dashboard/user/profile")}
+                    >
+                      Update Address
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div className="mb-3">
+                  {auth?.token ? (
+                    <button
+                      className="btn btn-outline-warning"
+                      onClick={() => navigate("/dashboard/user/profile")}
+                    >
+                      Update Address
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-outline-warning"
+                      onClick={() =>
+                        navigate("/login", {
+                          state: "/cart",
+                        })
+                      }
+                    >
+                      Plase Login to checkout
+                    </button>
+                  )}
+                </div>
+              )}
+              
+            </div>
 
           </div>
         </div>
