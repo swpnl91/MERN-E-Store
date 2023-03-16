@@ -1,7 +1,7 @@
 import express from "express";
 import {
   
-  
+  braintreeTokenController,
   createProductController,
   deleteProductController,
   getProductController,
@@ -77,6 +77,9 @@ router.get("/related-product/:pid/:cid", relatedProductController);
 
 // For getting products based on category
 router.get("/product-category/:slug", productCategoryController);
+
+// Token-based payment route
+router.get("/braintree/token", braintreeTokenController);
 
 
 
