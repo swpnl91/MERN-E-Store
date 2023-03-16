@@ -1,5 +1,6 @@
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
+import orderModel from "../models/orderModel.js";
 
 
 import fs from "fs";
@@ -435,20 +436,24 @@ export const braintreeTokenController = async (req, res) => {
 export const brainTreePaymentController = async (req, res) => {
   // Naming convention is a bit different (depending on the API docs for braintree)
   try {
-    const { nonce, cart } = req.body;
-    let total = 0;
+    // 'nonce' comes from 'braintree-web-drop-in-react'
+    const { nonce, cart } = req.body;      // getting 'cart' (whatever products are there in the cart) from front end
+    
+    let total = 0;      
+    
     cart.map((i) => {
-      total += i.price;
+      total += i.price;          // Calculating the total price of all the products in the cart
     });
-    let newTransaction = gateway.transaction.sale(
+    
+    let newTransaction = gateway.transaction.sale(          // To complete the transaction 
       {
-        amount: total,
+        amount: total,                        // An object expected in the '.sale()' method
         paymentMethodNonce: nonce,
         options: {
           submitForSettlement: true,
         },
       },
-      function (error, result) {
+      function (error, result) {                 // Callback function expected in the '.sale()' method
         if (result) {
           const order = new orderModel({
             products: cart,
