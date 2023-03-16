@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  
+  brainTreePaymentController,
   braintreeTokenController,
   createProductController,
   deleteProductController,
@@ -81,6 +81,8 @@ router.get("/product-category/:slug", productCategoryController);
 // Token-based payment route. This 'token' is used to verify our account with braintree.
 router.get("/braintree/token", braintreeTokenController);
 
+// For actual payment
+router.post("/braintree/payment", requireSignIn, brainTreePaymentController);
 
 
 
