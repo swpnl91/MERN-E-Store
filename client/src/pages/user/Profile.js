@@ -61,7 +61,7 @@ const Profile = () => {
     } catch (error) {
       
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error("Something went wrong while updating the profile");
     }
   };
 

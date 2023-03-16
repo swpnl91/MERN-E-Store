@@ -126,14 +126,14 @@ const CartPage = () => {
               {/* You directly call the function (totalPrice()) so that it calculates for everytime the page is rendered */}
               <h4>Total : {totalPrice()} </h4>
               
-              {auth?.user?.address ? (
+              {auth?.user?.address ? (   // Checks whether user has address
                 <>
                   <div className="mb-3">
                     <h4>Current Address</h4>
                     <h5>{auth?.user?.address}</h5>
                     <button
                       className="btn btn-outline-warning"
-                      onClick={() => navigate("/dashboard/user/profile")}
+                      onClick={() => navigate("/dashboard/user/profile")}    // Redirects the user to 'user-profile' section where they can update the address 
                     >
                       Update Address
                     </button>
@@ -141,19 +141,19 @@ const CartPage = () => {
                 </>
               ) : (
                 <div className="mb-3">
-                  {auth?.token ? (
+                  {auth?.token ? (      // Checks whether user is logged in or not
                     <button
                       className="btn btn-outline-warning"
                       onClick={() => navigate("/dashboard/user/profile")}
                     >
                       Update Address
                     </button>
-                  ) : (
+                  ) : (       // If the user is not logged in the button redirects them to the login page
                     <button
                       className="btn btn-outline-warning"
                       onClick={() =>
                         navigate("/login", {
-                          state: "/cart",
+                          state: "/cart",          // It basically redirects us to the 'cart page' once we login.
                         })
                       }
                     >
