@@ -11,7 +11,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Setting up for BrainTree Payment Gateway
-var gateway = new braintree.BraintreeGateway({
+var gateway = new braintree.BraintreeGateway({        // 'gateway' is used to generate 'token'
   environment: braintree.Environment.Sandbox,
   merchantId: process.env.BRAINTREE_MERCHANT_ID,
   publicKey: process.env.BRAINTREE_PUBLIC_KEY,
@@ -412,5 +412,21 @@ export const productCategoryController = async (req, res) => {
       error,
       message: "Error while getting products based on category",
     });
+  }
+};
+
+// BrainTree (token) payment gateway API
+export const braintreeTokenController = async (req, res) => {
+  
+  try {
+    gateway.clientToken.generate({}, function (err, response) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(response);
+      }
+    });
+  } catch (error) {
+    console.log(error);
   }
 };

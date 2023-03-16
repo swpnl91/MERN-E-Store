@@ -78,7 +78,7 @@ router.get("/related-product/:pid/:cid", relatedProductController);
 // For getting products based on category
 router.get("/product-category/:slug", productCategoryController);
 
-// Token-based payment route
+// Token-based payment route. This 'token' is used to verify our account with braintree.
 router.get("/braintree/token", braintreeTokenController);
 
 
