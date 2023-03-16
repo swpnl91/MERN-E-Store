@@ -417,15 +417,50 @@ export const productCategoryController = async (req, res) => {
 
 // BrainTree (token) payment gateway API
 export const braintreeTokenController = async (req, res) => {
-  
+  // You can refer documentation for 'Braintree' to generate token
   try {
     gateway.clientToken.generate({}, function (err, response) {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.send(response);
+        res.send(response);    // 'response' includes the token
       }
     });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Payment Handling using Braintree
+export const brainTreePaymentController = async (req, res) => {
+  // Naming convention is a bit different (depending on the API docs for braintree)
+  try {
+    const { nonce, cart } = req.body;
+    let total = 0;
+    cart.map((i) => {
+      total += i.price;
+    });
+    let newTransaction = gateway.transaction.sale(
+      {
+        amount: total,
+        paymentMethodNonce: nonce,
+        options: {
+          submitForSettlement: true,
+        },
+      },
+      function (error, result) {
+        if (result) {
+          const order = new orderModel({
+            products: cart,
+            payment: result,
+            buyer: req.user._id,
+          }).save();
+          res.json({ ok: true });
+        } else {
+          res.status(500).send(error);
+        }
+      }
+    );
   } catch (error) {
     console.log(error);
   }
