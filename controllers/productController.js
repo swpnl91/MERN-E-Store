@@ -4,11 +4,19 @@ import categoryModel from "../models/categoryModel.js";
 
 import fs from "fs";
 import slugify from "slugify";
-
+import braintree from "braintree";
 import dotenv from "dotenv";
 
 
 dotenv.config();
+
+// Setting up for BrainTree Payment Gateway
+var gateway = new braintree.BraintreeGateway({
+  environment: braintree.Environment.Sandbox,
+  merchantId: process.env.BRAINTREE_MERCHANT_ID,
+  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
+  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+});
 
 
 
