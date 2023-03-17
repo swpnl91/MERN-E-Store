@@ -36,7 +36,7 @@ const AdminOrders = () => {
         
         <div className="col-md-9">
           
-          <h1 className="text-center">All Orders</h1>
+          <h1 className="text-center">All Orders (Users)</h1>
           
           {orders?.map((o, i) => {
             return (
