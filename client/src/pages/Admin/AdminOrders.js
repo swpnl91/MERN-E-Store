@@ -18,6 +18,11 @@ const AdminOrders = () => {
     <Layout title={"All Orders Data"}>
       <div className="row dashboard">
         
+        <div className="col-md-3">
+          <AdminMenu />
+        </div>
+        
+        
         
       </div>
     </Layout>
