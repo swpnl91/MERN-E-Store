@@ -15,14 +15,29 @@ const AdminOrders = () => {
   
   const [status, setStatus] = useState([
     "Not Processed",
-    "Processing",
+    "Processing",              // Same as 'enum' from orderModel.js
     "Shipped",
     "Delivered",
     "Cancelled",
   ]);
-  const [changeStatus, setCHangeStatus] = useState("");
+  const [changeStatus, setChangeStatus] = useState("");
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
+
+  // Function for getting all user-orders as an Admin
+  const getOrders = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/auth/all-orders");
+      setOrders(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // useEffect() to call 'getOrders()' initially
+  useEffect(() => {
+    if (auth?.token) getOrders();
+  }, [auth?.token]);
 
 
   return (
