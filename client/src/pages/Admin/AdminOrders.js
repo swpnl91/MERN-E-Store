@@ -11,7 +11,16 @@ import { useAuth } from "../../context/auth";
 
 const AdminOrders = () => {
   
-  
+  const [status, setStatus] = useState([
+    "Not Processed",
+    "Processing",
+    "Shipped",
+    "Delivered",
+    "Cancelled",
+  ]);
+  const [changeStatus, setCHangeStatus] = useState("");
+  const [orders, setOrders] = useState([]);
+  const [auth, setAuth] = useAuth();
 
 
   return (
@@ -65,7 +74,7 @@ const AdminOrders = () => {
                       <td>{o?.products?.length}</td>
                     </tr>
                   </tbody>
-                  
+
                 </table>
                 
                 <div className="container">
