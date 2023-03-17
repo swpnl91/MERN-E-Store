@@ -251,11 +251,11 @@ export const updateProfileController = async (req, res) => {
 export const getOrdersController = async (req, res) => {
   try {
     const orders = await orderModel
-      .find({ buyer: req.user._id })
-      .populate("products", "-photo")
-      .populate("buyer", "name");
+      .find({ buyer: req.user._id })     
+      .populate("products", "-photo")    // Deselecting 'photo' and populating 'products'. 
+      .populate("buyer", "name");        // Also populating 'buyer', 'name' (populate 'buyer' but only WITH the 'name' field)
     
-      res.json(orders);
+    res.json(orders);
   } catch (error) {
     console.log(error);
     

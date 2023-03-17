@@ -3,7 +3,7 @@ import UserMenu from "../../components/Layout/UserMenu";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
-import moment from "moment";
+import moment from "moment";      // Used for getting/displaying the 'date'
 
 
 const Orders = () => {
@@ -11,6 +11,8 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
   
+
+  // Function to get all orders
   const getOrders = async () => {
     try {
       const { data } = await axios.get("/api/v1/auth/orders");
@@ -20,6 +22,7 @@ const Orders = () => {
     }
   };
 
+  // useEffect() to call 'getOrders()' initially
   useEffect(() => {
     if (auth?.token) getOrders();
   }, [auth?.token]);
@@ -38,7 +41,7 @@ const Orders = () => {
             
             <h1 className="text-center">All Orders</h1>
             
-            {orders?.map((o, i) => {
+            {orders?.map((o, i) => {        // o --> 'order', i --> 'index'
               return (
                 <div className="border shadow">
                   
@@ -48,7 +51,7 @@ const Orders = () => {
                         <th scope="col">#</th>
                         <th scope="col">Status</th>
                         <th scope="col">Buyer</th>
-                        <th scope="col"> date</th>
+                        <th scope="col">Date</th>
                         <th scope="col">Payment</th>
                         <th scope="col">Quantity</th>
                       </tr>
@@ -58,6 +61,7 @@ const Orders = () => {
                         <td>{i + 1}</td>
                         <td>{o?.status}</td>
                         <td>{o?.buyer?.name}</td>
+                         {/* Basically 'moment(o.createAt).fromNow()' calculates the time from when the order was created to now */}
                         <td>{moment(o?.createAt).fromNow()}</td>
                         <td>{o?.payment.success ? "Success" : "Failed"}</td>
                         <td>{o?.products?.length}</td>
