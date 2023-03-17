@@ -274,9 +274,9 @@ export const getAllOrdersController = async (req, res) => {
     
     const orders = await orderModel
       .find({})
-      .populate("products", "-photo")
-      .populate("buyer", "name")
-      .sort({ createdAt: "-1" });
+      .populate("products", "-photo")          // Same as getting order for a user but we get all orders. Populate 'products' and no photo
+      .populate("buyer", "name")               // Populate 'buyer' field with only the 'name' field 
+      .sort({ createdAt: "-1" });              // Basically sorting in descending order (Latest orders will be displayed on top)
     
     res.json(orders);
   } catch (error) {
