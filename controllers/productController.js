@@ -6,10 +6,10 @@ import orderModel from "../models/orderModel.js";
 import fs from "fs";
 import slugify from "slugify";
 import braintree from "braintree";
-import dotenv from "dotenv";
+import dotenv from "dotenv";         // '.env' wasn't to be found (for BrainTree) for some reason. Hence had to import it.
 
 
-dotenv.config();
+dotenv.config();                    // Calling the '.config()' in 'dotenv'
 
 // Setting up for BrainTree Payment Gateway
 var gateway = new braintree.BraintreeGateway({        // 'gateway' is used to generate 'token'

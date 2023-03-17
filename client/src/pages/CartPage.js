@@ -17,7 +17,7 @@ const CartPage = () => {
   const [auth, setAuth] = useAuth();     // For checking whether the user is logged in or not
   const [cart, setCart] = useCart();
   const [clientToken, setClientToken] = useState("");    // For getting/setting the client token for payment gateway 
-  const [instance, setInstance] = useState("");
+  const [instance, setInstance] = useState("");          // We'll be getting this from 'braintree-web-drop-in-react' as well
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   
@@ -180,7 +180,31 @@ const CartPage = () => {
                 </div>
               )}
 
-              
+              <div className="mt-2">
+                {!clientToken || !auth?.token || !cart?.length ? (
+                  ""
+                ) : (
+                  <>
+                    <DropIn
+                      options={{
+                        authorization: clientToken,       // This is how '<DropIn />' works
+                        paypal: {
+                          flow: "vault",
+                        },
+                      }}
+                      onInstance={(instance) => setInstance(instance)}
+                    />
+
+                    <button
+                      className="btn btn-primary"
+                      onClick={handlePayment}
+                      disabled={loading || !instance || !auth?.user?.address}
+                    >
+                      {loading ? "Processing ...." : "Make Payment"}
+                    </button>
+                  </>
+                )}
+              </div>
 
             </div>
 
