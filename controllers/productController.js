@@ -458,7 +458,7 @@ export const brainTreePaymentController = async (req, res) => {
           const order = new orderModel({
             products: cart,
             payment: result,
-            buyer: req.user._id,
+            buyer: req.user._id,        // 'req.user._id' comes from the middleware 'requireSignIn'. That's where we get it from.
           }).save();
           res.json({ ok: true });
         } else {
