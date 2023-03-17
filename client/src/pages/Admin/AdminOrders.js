@@ -5,7 +5,7 @@ import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
-import { Select } from "antd";
+import { Select } from "antd";       // For displaying/selecting dropdown menu items 
 const { Option } = Select;
 
 
@@ -38,6 +38,20 @@ const AdminOrders = () => {
   useEffect(() => {
     if (auth?.token) getOrders();
   }, [auth?.token]);
+
+  // Function for handling the changes made in the order status
+  const handleChange = async (orderId, value) => {
+    try {
+      
+      const { data } = await axios.put(`/api/v1/auth/order-status/${orderId}`, {
+        status: value,
+      });
+      
+      getOrders();    // Calling the function again to get the orders with the updated status
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   return (
@@ -75,10 +89,11 @@ const AdminOrders = () => {
                       <td>
                         <Select
                           bordered={false}
-                          onChange={(value) => handleChange(o._id, value)}
+                          onChange={(value) => handleChange(o._id, value)}    // Comes from the 'value' in <Option />
                           defaultValue={o?.status}
                         >
                           {status.map((s, i) => (
+                            // The 'value' below, is what's being sent to 'onChange' in <Select />
                             <Option key={i} value={s}>
                               {s}
                             </Option>
