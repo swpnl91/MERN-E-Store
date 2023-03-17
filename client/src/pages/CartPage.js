@@ -16,7 +16,7 @@ const CartPage = () => {
   
   const [auth, setAuth] = useAuth();     // For checking whether the user is logged in or not
   const [cart, setCart] = useCart();
-  const [clientToken, setClientToken] = useState("");
+  const [clientToken, setClientToken] = useState("");    // For getting/setting the client token for payment gateway 
   const [instance, setInstance] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -51,6 +51,23 @@ const CartPage = () => {
       console.log(error);
     }
   };
+
+  // Getting payment gateway token 
+  const getToken = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/product/braintree/token");
+      setClientToken(data?.clientToken);        // We get the 'clientToken' in 'data' when the 'get' request (to the API) is successful
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // useEffect() to call 'getToken()'
+  useEffect(() => {
+    if (auth?.token) {     ////////////////////// Check whether 'if' condition is needed or not ////////////////////////
+      getToken();         // Just so that initially it's called and the 'clientToken' is set
+    }
+  }, [auth?.token]);     // Generate (call 'getToken()') if the user is logged in (auth.token)
 
 
   return (

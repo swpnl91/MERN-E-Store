@@ -424,7 +424,7 @@ export const braintreeTokenController = async (req, res) => {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.send(response);    // 'response' includes the token
+        res.send(response);    // 'response' includes the token as 'clientToken'
       }
     });
   } catch (error) {
