@@ -69,6 +69,34 @@ const CartPage = () => {
     }
   }, [auth?.token]);     // Generate (call 'getToken()') if the user is logged in (auth.token)
 
+  // Function for handling payments
+  const handlePayment = async () => {
+    try {
+      setLoading(true);
+      
+      const { nonce } = await instance.requestPaymentMethod();       // 'instance' has 'requestPaymentMethod()' method that gives us 'nonce'
+      
+      const { data } = await axios.post("/api/v1/product/braintree/payment", {
+        nonce,        // We send 'nonce' and 'cart'
+        cart,
+      });
+      
+      setLoading(false);
+      
+      localStorage.removeItem("cart");       // Once payment is done we remove it from 'localStorage' 
+      
+      setCart([]);                      // Once payment is done we 'setCart' (context) to an empty array 
+      
+      navigate("/dashboard/user/orders");
+      
+      toast.success("Payment Completed Successfully ");
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+
 
   return (
 
@@ -181,8 +209,8 @@ const CartPage = () => {
               )}
 
               <div className="mt-2">
-                {!clientToken || !auth?.token || !cart?.length ? (
-                  ""
+                {!clientToken || !auth?.token || !cart?.length ? (     // If there is no 'clientToken', no 'auth?.token' and no items in 'cart' then render " '' " (nothing)
+                  "" 
                 ) : (
                   <>
                     <DropIn
@@ -198,7 +226,7 @@ const CartPage = () => {
                     <button
                       className="btn btn-primary"
                       onClick={handlePayment}
-                      disabled={loading || !instance || !auth?.user?.address}
+                      disabled={loading || !instance || !auth?.user?.address}      // Basically if 'loading' is true 'disabled' will also be true. If 'instance' is true 'disabled' would false.
                     >
                       {loading ? "Processing ...." : "Make Payment"}
                     </button>
