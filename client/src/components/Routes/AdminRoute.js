@@ -6,6 +6,7 @@ import Spinner from "../Spinner";
 
 
 
+// Private route for Admin
 export default function PrivateRoute() {
   
   const [ok, setOk] = useState(false);

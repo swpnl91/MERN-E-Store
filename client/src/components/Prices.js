@@ -1,3 +1,5 @@
+
+// Default ranges for filtering by product price
 export const Prices = [
   {
     _id: 0,

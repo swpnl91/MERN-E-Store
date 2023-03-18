@@ -5,6 +5,7 @@ import axios from "axios";
 import Spinner from "../Spinner";
 
 
+// Private route for User
 export default function PrivateRoute() {
   
   const [ok, setOk] = useState(false);    // 'ok'/'setOk' because we send 'ok: true' in backend in 'authRoute.js'

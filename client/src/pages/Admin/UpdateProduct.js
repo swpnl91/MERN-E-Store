@@ -9,7 +9,7 @@ const { Option } = Select;
 
 
 
-///////////// Problem - Need to refresh/reload the page to see the updated photo. Change isn't refelcted immediately.     AND ALSO SHIPPING?!
+///////////// Problem - Need to refresh/reload the page to see the updated photo. Change isn't reflected immediately.     AND ALSO SHIPPING?!
 
 const UpdateProduct = () => {
   
