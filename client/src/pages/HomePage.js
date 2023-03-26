@@ -22,7 +22,7 @@ const HomePage = () => {
   const [radio, setRadio] = useState([]);          // Is used to store the price range for filtering on the basis of price of the products
   const [total, setTotal] = useState(0);            // To keep a tab on the quantity/total count of the products
   const [page, setPage] = useState(1);              // To keep a tab on the page number
-  const [loading, setLoading] = useState(false);    // To keep show the 'loading' state
+  const [loading, setLoading] = useState(false);    // To show the 'loading' state
 
   // Function to get all categories
   const getAllCategory = async () => {
@@ -137,7 +137,7 @@ const HomePage = () => {
       
       {/* banner image */}
       <img
-        src="/images/banner.png"
+        src="/images/banner.jpg"
         className="banner-img"
         alt="bannerimage"
         width={"100%"}
