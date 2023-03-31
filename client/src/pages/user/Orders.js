@@ -61,8 +61,8 @@ const Orders = () => {
                         <td>{i + 1}</td>
                         <td>{o?.status}</td>
                         <td>{o?.buyer?.name}</td>
-                         {/* Basically 'moment(o.createAt).fromNow()' calculates the time from when the order was created to now */}
-                        <td>{moment(o?.createAt).fromNow()}</td>
+                         {/* Basically 'moment(o.createdAt).fromNow()' calculates the time from when the order was created to 'now' */}
+                        <td>{moment(o?.createdAt).fromNow()}</td>
                         <td>{o?.payment.success ? "Success" : "Failed"}</td>
                         <td>{o?.products?.length}</td>
                       </tr>

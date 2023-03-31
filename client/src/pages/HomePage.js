@@ -256,7 +256,7 @@ const HomePage = () => {
           </div>
           
           <div className="m-2 p-3">
-            {products && products.length < total && radio.length === 0 && checked.length === 0 && (      // If the 'products.length === total' that means we've only 6 products (set in backend for displaying max 6 products per page) in DB/inventory then 'Load more' button won't be shown
+            {products && products.length < total && radio.length === 0 && checked.length === 0 && (      // If the 'products.length === total' that means we've only 6 products (set in backend for displaying max 6 products per page) in DB/inventory then 'Load more' button won't be shown. 'radio.length === 0 && checked.length === 0' is a temporary solution for not showing 'load more' whn filters are applied
               <button
                 className="btn loadmore"
                 onClick={(e) => {
