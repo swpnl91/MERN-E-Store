@@ -3,7 +3,6 @@ import Layout from "./../components/Layout/Layout";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/ProductDetailsStyles.css";
-
 import { useCart } from "../context/cart";
 import toast from "react-hot-toast";
 
@@ -14,7 +13,6 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
-
   const [cart, setCart] = useCart();                    // using context to add items to cart
 
   // useEffect for getting product details initially

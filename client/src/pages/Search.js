@@ -2,12 +2,20 @@ import React from "react";
 import Layout from "./../components/Layout/Layout";
 import { useSearch } from "../context/search";
 
+import { useCart } from "../context/cart";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import "../styles/Search.css";
+
 
 
 
 const Search = () => {
   
   const [values, setValues] = useSearch();
+
+  const navigate = useNavigate();
+  const [cart, setCart] = useCart();                    // using context to add items to cart
   
   
   
@@ -15,7 +23,7 @@ const Search = () => {
     
     <Layout title={"Search results"}>
       
-      <div className="container">
+      <div className="container search">
         <div className="text-center">
           
           <h1>Search Resuts</h1>
@@ -40,8 +48,31 @@ const Search = () => {
                     {p.description.substring(0, 30)}...
                   </p>
                   <p className="card-text"> $ {p.price}</p>
-                  <button class="btn btn-primary ms-1">More Details</button>
-                  <button class="btn btn-secondary ms-1">ADD TO CART</button>
+                  
+                  {/* <button class="btn btn-primary ms-1">More Details</button>
+                  <button class="btn btn-secondary ms-1">ADD TO CART</button> */}
+
+                  <button
+                    className="btn btn-info ms-1"
+                    onClick={() => navigate(`/product/${p.slug}`)}
+                  >
+                    More Details
+                  </button>
+
+                  <button
+                    className="btn btn-dark ms-1"
+                    onClick={() => {
+                      setCart([...cart, p]);       // While keeping the existing products in the 'cart' array, we add a new product ('p' is the product)
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])      // We're basically storing the cart in localStorage
+                      );
+                      toast.success("Item added to cart");
+                    }}
+                  >
+                    ADD TO CART
+                  </button>
+
                 </div>
               </div>
             ))}
