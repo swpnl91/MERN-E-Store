@@ -4,6 +4,9 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/ProductDetailsStyles.css";
 
+import { useCart } from "../context/cart";
+import toast from "react-hot-toast";
+
 
 const ProductDetails = () => {
   
@@ -11,6 +14,8 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+
+  const [cart, setCart] = useCart();                    // using context to add items to cart
 
   // useEffect for getting product details initially
   useEffect(() => {
@@ -83,7 +88,22 @@ const ProductDetails = () => {
 
           <h6>Category : {product?.category?.name}</h6>
           
-          <button className="btn btn-secondary ms-1">ADD TO CART</button>
+          {/* <button className="btn btn-secondary ms-1">ADD TO CART</button> */}
+
+          <button
+            className="btn btn-secondary ms-1"
+            onClick={() => {
+              setCart([...cart, product]);       // While keeping the existing products in the 'cart' array, we add a new product
+              localStorage.setItem(
+                "cart",
+                JSON.stringify([...cart, product])      // We're basically storing the cart in localStorage
+              );
+              toast.success("Item added to cart");
+            }}
+          >
+            ADD TO CART
+          </button>
+
         </div>
 
       </div>
