@@ -45,7 +45,7 @@ const CategoryProduct = () => {
         
         <h4 className="text-center">Category - {category?.name}</h4>
         
-        <h6 className="text-center">{products?.length} result found </h6>
+        <h6 className="text-center">{products?.length} result/results found!</h6>
         
         <div className="row">
           <div className="col-md-9 offset-1">
@@ -83,7 +83,7 @@ const CategoryProduct = () => {
                     <div className="card-name-price">
                       
                       <button
-                        className="btn btn-info ms-1"
+                        className="btn btn-info ms-1 details"
                         onClick={() => navigate(`/product/${p.slug}`)}
                       >
                         More Details

@@ -6,6 +6,8 @@ import axios from "axios";
 import CategoryForm from "../../components/Form/CategoryForm";
 import { Modal } from "antd";      // 'reset.css' needs to be imported in 'index.js' after installing 'ant-design'
 
+import "../../styles/CreateCategory.css";
+
 
 
 const CreateCategory = () => {
@@ -129,7 +131,7 @@ const CreateCategory = () => {
               />
             </div>
             
-            <div className="w-75" >  
+            <div className="w-75 category-list" >  
               <table className="table">
                 <thead>
                   <tr>
@@ -145,7 +147,7 @@ const CreateCategory = () => {
                           <td>{c.name}</td>
                           <td>
                             <button
-                              className="btn btn-primary ms-2"
+                              className="btn ms-2 edit"
                               onClick={() => {
                                 setVisible(true);      // basically '<Modal>' will pop-up or get activated when we click on 'Edit' button
                                 setUpdatedName(c.name);     // this means that 'updatedName' becomes the name of the category (to-be edited) which is passed in the <CategoryForm> (from <Modal>) below so that whn the modal opens up it's already populated with the category's existing name (which the user can then edit)
@@ -155,7 +157,7 @@ const CreateCategory = () => {
                               Edit
                             </button>
                             <button
-                              className="btn btn-danger ms-2"
+                              className="btn ms-2 delete"
                               onClick={() => {       // anonymous function is used because we need to pass an argument to 'handleDelete(c._id)'. Otherwise 'handleDelete' will be called even without clicking on the 'delete' button
                                 handleDelete(c._id);
                               }}

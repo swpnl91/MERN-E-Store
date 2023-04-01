@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+import "../../styles/CreateProduct.css";
 import { useNavigate } from "react-router-dom";     // Gave an error for the order in which it was imported
 import Layout from "./../../components/Layout/Layout";
 import AdminMenu from "./../../components/Layout/AdminMenu";
@@ -192,7 +194,7 @@ const CreateProduct = () => {
               </div>
 
               <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleCreate}>
+                <button className="btn create-product" onClick={handleCreate}>
                   CREATE PRODUCT
                 </button>
               </div>

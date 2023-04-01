@@ -1,0 +1,5 @@
+.category-card:hover {
+  background-color: black;
+  border-color: black;
+  color: white;
+}

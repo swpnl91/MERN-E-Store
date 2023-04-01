@@ -1,0 +1,39 @@
+.category-list{
+  margin-bottom: 100px;
+}
+
+.edit {
+  background-color: black;
+  border-color: black;
+  color: white;
+  border-radius: 0;
+  width: 30%;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.edit:hover {
+  background-color: yellow;
+  color: black; 
+  border-color: black;
+}
+
+.delete {
+  background-color: white;
+  border-color: black;
+  color: black;
+  border-radius: 0;
+  width: 30%;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.delete:hover {
+  background-color: #BB323B;
+  border-color: black;
+  color: white;
+}

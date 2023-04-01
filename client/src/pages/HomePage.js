@@ -225,14 +225,14 @@ const HomePage = () => {
                   <div className="card-name-price">
                     
                     <button
-                      className="btn btn-info ms-1"
+                      className="btn btn-info ms-1 details"
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
                       More Details
                     </button>
 
                     <button
-                      className="btn btn-dark ms-1"
+                      className="btn btn-dark ms-1 add-to-cart"
                       onClick={() => {
                         setCart([...cart, p]);       // While keeping the existing products in the 'cart' array, we add a new product ('p' is the product)
                         localStorage.setItem(

@@ -1,0 +1,24 @@
+.category {
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+
+
+.create-product {
+  background-color: black;
+  border-color: black;
+  color: white;
+  border-radius: 0;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.create-product:hover {
+  background-color: yellow;
+  color: black; 
+  border-color: black;
+}

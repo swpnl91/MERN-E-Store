@@ -27,3 +27,64 @@
   text-align: center;
   /* margin-top: -140px !important; */
 }
+
+.remove {
+  background-color: white;
+  border-color: black;
+  color: black;
+  border-radius: 0;
+  width: 50%;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.remove:hover {
+  background-color: #BB323B;
+  border-color: black;
+  color: white;
+}
+
+.update-address {
+  background-color: black;
+  border-color: black;
+  color: white;
+  border-radius: 0;
+  width: 50%;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.update-address:hover {
+  background-color: yellow;
+  color: black; 
+  border-color: black;
+}
+
+.payment{
+  background-color: white;
+  border-color: black;
+  color: black;
+  border-radius: 0;
+  width: 30%;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 75px;
+}
+
+.payment:hover {
+  background-color: #58AC95;
+  color: white; 
+  border-color: black;
+}
+
+.cart-content {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

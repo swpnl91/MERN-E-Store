@@ -89,7 +89,7 @@ const ProductDetails = () => {
           {/* <button className="btn btn-secondary ms-1">ADD TO CART</button> */}
 
           <button
-            className="btn btn-secondary ms-1"
+            className="btn btn-secondary ms-1 add-to-cart"
             onClick={() => {
               setCart([...cart, product]);       // While keeping the existing products in the 'cart' array, we add a new product
               localStorage.setItem(
@@ -143,7 +143,7 @@ const ProductDetails = () => {
 
                 <div className="card-name-price">
                   <button
-                    className="btn btn-info ms-1"
+                    className="btn btn-info ms-1 details"
                     onClick={() => navigate(`/product/${p.slug}`)}
                   >
                     More Details

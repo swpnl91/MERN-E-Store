@@ -12,7 +12,7 @@
   flex-wrap: wrap;
 }
 .home-page .card {
-  background-color: rgba(128, 128, 128, 0.097);
+  /* background-color: rgba(128, 128, 128, 0.097); */
   width: 18rem;
 }
 .home-page .card-name-price {
@@ -80,4 +80,28 @@ filters
   color: green;
   font-weight: bold;
   font-size: 20px !important;
+  margin-bottom: 50px;
+}
+
+
+.add-to-cart {
+  background-color: black;
+}
+
+.add-to-cart:hover {
+  background-color: yellow;
+  color: black; 
+  /* border-color: yellow; */
+}
+
+.details {
+  background-color: white;
+  border-color: black;
+  color: black;
+}
+
+.details:hover {
+  background-color: black;
+  border-color: black;
+  color: white;
 }

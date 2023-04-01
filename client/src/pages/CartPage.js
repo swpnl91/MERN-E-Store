@@ -102,7 +102,7 @@ const CartPage = () => {
 
     <Layout>
       
-      <div className=" cart-page">
+      <div className="cart-page">
         
         <div className="row">
           <div className="col-md-12">
@@ -127,7 +127,7 @@ const CartPage = () => {
           </div>
         </div>
         
-        <div className="container ">
+        <div className="container cart-content">
           <div className="row ">
             
             <div className="col-md-7  p-0 m-0">
@@ -149,7 +149,7 @@ const CartPage = () => {
                   </div>
                   <div className="col-md-4 cart-remove-btn">
                     <button
-                      className="btn btn-danger"
+                      className="btn remove"
                       onClick={() => removeCartItem(p._id)}
                     >
                       Remove
@@ -177,7 +177,7 @@ const CartPage = () => {
                     <h4>Current Address</h4>
                     <h5>{auth?.user?.address}</h5>
                     <button
-                      className="btn btn-outline-warning"
+                      className="btn update-address"
                       onClick={() => navigate("/dashboard/user/profile")}    // Redirects the user to 'user-profile' section where they can update the address 
                     >
                       Update Address
@@ -188,14 +188,14 @@ const CartPage = () => {
                 <div className="mb-3">
                   {auth?.token ? (      // Checks whether user is logged in or not
                     <button
-                      className="btn btn-outline-warning"
+                      className="btn update-address"
                       onClick={() => navigate("/dashboard/user/profile")}
                     >
                       Update Address
                     </button>
                   ) : (       // If the user is not logged in the button redirects them to the login page
                     <button
-                      className="btn btn-outline-warning"
+                      className="btn update-address"
                       onClick={() =>
                         navigate("/login", {
                           state: "/cart",          // It basically redirects us to the 'cart page' once we login.
@@ -224,7 +224,7 @@ const CartPage = () => {
                     />
 
                     <button
-                      className="btn btn-primary"
+                      className="btn payment"
                       onClick={handlePayment}
                       disabled={loading || !instance || !auth?.user?.address}      // Basically if 'loading' is true 'disabled' will also be true. If 'instance' is true 'disabled' would false.
                     >
