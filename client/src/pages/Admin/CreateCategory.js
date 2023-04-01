@@ -129,7 +129,7 @@ const CreateCategory = () => {
               />
             </div>
             
-            <div className="w-75">
+            <div className="w-75" >  
               <table className="table">
                 <thead>
                   <tr>
@@ -138,41 +138,44 @@ const CreateCategory = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {categories?.map((c) => (
+                  {/* {categories?.map((c) => ( */}
                     <>
-                      <tr>
-                        <td key={c._id}>{c.name}</td>
-                        <td>
-                          <button
-                            className="btn btn-primary ms-2"
-                            onClick={() => {
-                              setVisible(true);      // basically '<Modal>' will pop-up or get activated when we click on 'Edit' button
-                              setUpdatedName(c.name);     // this means that 'updatedName' becomes the name of the category (to-be edited) which is passed in the <CategoryForm> (from <Modal>) below so that whn the modal opens up it's already populated with the category's existing name (which the user can then edit)
-                              setSelected(c);     // c -> is basically a category object that includes its name, _id, etc. This essentially means - 'selected' is that category object now
-                            }}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className="btn btn-danger ms-2"
-                            onClick={() => {       // anonymous function is used because we need to pass an argument to 'handleDelete(c._id)'. Otherwise 'handleDelete' will be called even without clicking on the 'delete' button
-                              handleDelete(c._id);
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
+                      {categories?.map((c) => (     // Had to move inside of '<>...</>' because kept getting an error for not passing the 'key' 
+                        <tr key={c._id}>
+                          <td>{c.name}</td>
+                          <td>
+                            <button
+                              className="btn btn-primary ms-2"
+                              onClick={() => {
+                                setVisible(true);      // basically '<Modal>' will pop-up or get activated when we click on 'Edit' button
+                                setUpdatedName(c.name);     // this means that 'updatedName' becomes the name of the category (to-be edited) which is passed in the <CategoryForm> (from <Modal>) below so that whn the modal opens up it's already populated with the category's existing name (which the user can then edit)
+                                setSelected(c);     // c -> is basically a category object that includes its name, _id, etc. This essentially means - 'selected' is that category object now
+                              }}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="btn btn-danger ms-2"
+                              onClick={() => {       // anonymous function is used because we need to pass an argument to 'handleDelete(c._id)'. Otherwise 'handleDelete' will be called even without clicking on the 'delete' button
+                                handleDelete(c._id);
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                     </>
-                  ))}
+                  {/* ))} */}
                 </tbody>
               </table>
             </div>
+          
             
             <Modal
               onCancel={() => setVisible(false)}      // In order to close the '<Modal>'
               footer={null}
-              visible={visible}        // '<Modal>' is visible when 'visible' becomes 'true'
+              open={visible}        // '<Modal>' is visible when 'visible' becomes 'true'. 'visible' was changed to 'open' as it was showing warning/error because it won't be used in future by the package
             >
               <CategoryForm
                 // basically we're re-using the 'CategoryForm' as a modal
@@ -191,3 +194,4 @@ const CreateCategory = () => {
 };
 
 export default CreateCategory;
+
