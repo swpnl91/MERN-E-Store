@@ -23,7 +23,7 @@ const Search = () => {
     
     <Layout title={"Search results"}>
       
-      <div className="container search">
+      <div className="container search dashboard">
         <div className="text-center">
           
           <h1>Search Resuts</h1>
@@ -34,9 +34,9 @@ const Search = () => {
               : `Found ${values?.results.length}`}
           </h6>
 
-          <div className="d-flex flex-wrap mt-4">
+          <div className="d-flex flex-wrap mt-4 search-cart">
             {values?.results.map((p) => (        // We iterate through the 'values.results' array and render each product
-              <div className="card m-2" style={{ width: "18rem" }}>
+              <div className="card m-2 search-card" style={{ width: "18rem" }} key={p._id}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -53,14 +53,14 @@ const Search = () => {
                   <button class="btn btn-secondary ms-1">ADD TO CART</button> */}
 
                   <button
-                    className="btn btn-info ms-1"
+                    className="btn btn-info ms-1 details"
                     onClick={() => navigate(`/product/${p.slug}`)}
                   >
                     More Details
                   </button>
 
                   <button
-                    className="btn btn-dark ms-1"
+                    className="btn btn-dark ms-1 add-to-cart"
                     onClick={() => {
                       setCart([...cart, p]);       // While keeping the existing products in the 'cart' array, we add a new product ('p' is the product)
                       localStorage.setItem(

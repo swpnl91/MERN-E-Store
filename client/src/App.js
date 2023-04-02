@@ -29,6 +29,9 @@ import AdminOrders from "./pages/Admin/AdminOrders";
 
 
 function App() {
+
+  window.addEventListener("contextmenu", (e) => e.preventDefault());    // this basically doesn't allow users to use the right click feature while on our website and consequently they can't inspect elements
+
   return (
     <>
       <Routes>
