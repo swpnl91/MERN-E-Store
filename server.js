@@ -6,8 +6,8 @@ import connectDB from './config/db.js';    // notice it's 'db.js' and not 'db' a
 import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
-
 import cors from "cors";
+// import path from "path";      // Comes with node.js. Done for deployment. ES module scope doesn't cover '__dirname'. Check 'server.js' in that OTHER repository for the fix. 
 
 
 //Configure env
@@ -24,16 +24,23 @@ app.use(cors());
 app.use(express.json());  // enabling json so that we can send json data with 'req/res' (instead of 'body-parser')
 app.use(morgan("dev"));   // tells us abou the type of 'request (GET/POST etc.)' status code and how much time it took (in ms) for execution, in the terminal. Useful for debugging and will be removed in production
 
+// app.use(express.static(path.join(__dirname, './client/build')));      // For deployment. To set the path of the 'build' folder on client-side
+
 //Routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 
 
+
 //Rest API
-app.get("/", (req, res) => {
+app.get("/", (req, res) => {          // Commented out for deployment. Also in 'package.json' under 'scripts' -> 'dev', 'npm run server' was changed to 'npm run start' as we no longer need nodemon in deployment phase.
   res.send("<h1>Welcome!</h1>");
 });
+
+// app.use('*', function(req, res) {           // This is done for deployment after 'npm run build'
+//   res.sendFile(path.join(__dirname, './client/build/index.html'));        // Setting the entry point file (index.html)
+// });
 
 //PORT
 const PORT = process.env.PORT || 8080;    // 'process' comes with node.js by default
