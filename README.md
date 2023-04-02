@@ -8,13 +8,11 @@ The application also features a user authentication system that allows users to 
 
 ## Final Product
 
-###### Click here to check out the deployed app
+###### Click [here](https://easy-erin-zebra-shoe.cyclic.app/) to check out the deployed app
 
 ###### The following is a snippet of the admin dashboard and its functionalities. These functionalities are only accessible to the admins.
 
-
 https://user-images.githubusercontent.com/91759275/229358156-e19a9b8e-4cb9-40af-911a-88bf05245f5c.mov
-
 
 ## Features
 
