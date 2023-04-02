@@ -76,6 +76,13 @@ filters
   margin-top: 20px;
 }
 
+.filter-card {
+  margin-bottom: 50px;
+}
+
+
+
+
 .loadmore {
   color: green;
   font-weight: bold;

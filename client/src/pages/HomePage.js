@@ -144,7 +144,7 @@ const HomePage = () => {
       />
       {/* banner image */}
 
-      <div className="container-fluid row mt-3 home-page">
+      <div className="container-fluid row mt-3 home-page filter-card">
         
         <div className="col-md-3 filters">
           
