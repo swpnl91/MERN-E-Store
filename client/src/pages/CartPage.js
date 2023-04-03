@@ -4,7 +4,7 @@ import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
-import { AiFillWarning } from "react-icons/ai";
+// import { AiFillWarning } from "react-icons/ai";        // Not being used
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/CartStyles.css";
@@ -27,7 +27,7 @@ const CartPage = () => {
     try {
       let total = 0;
       cart?.map((item) => {
-        total = total + item.price;
+        return total = total + item.price;
       });
       return total.toLocaleString("en-US", {
         style: "currency",
@@ -76,7 +76,12 @@ const CartPage = () => {
       
       const { nonce } = await instance.requestPaymentMethod();       // 'instance' has 'requestPaymentMethod()' method that gives us 'nonce'
       
-      const { data } = await axios.post("/api/v1/product/braintree/payment", {
+      // const { data } = await axios.post("/api/v1/product/braintree/payment", {      // 'data' isn't being used
+      //   nonce,        // We send 'nonce' and 'cart'
+      //   cart,
+      // });
+
+      await axios.post("/api/v1/product/braintree/payment", {
         nonce,        // We send 'nonce' and 'cart'
         cart,
       });

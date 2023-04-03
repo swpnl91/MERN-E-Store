@@ -7,7 +7,7 @@ import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
-// import path from "path";      // Comes with node.js. Done for deployment. ES module scope doesn't cover '__dirname'. Check 'server.js' in that OTHER repository for the fix. 
+//import path from "path";      // Comes with node.js. Done for deployment. ES module scope doesn't cover '__dirname'. Check 'server.js' in that OTHER repository for the fix. 
 
 
 //Configure env

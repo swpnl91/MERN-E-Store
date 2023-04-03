@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
@@ -13,14 +13,24 @@ const { Option } = Select;
 
 const AdminOrders = () => {
   
-  const [status, setStatus] = useState([
+  const status = [
     "Not Processed",
     "Processing",              // Same as 'enum' from orderModel.js
     "Shipped",
     "Delivered",
     "Cancelled",
-  ]);
-  const [changeStatus, setChangeStatus] = useState("");
+  ];
+
+
+  // const [status, setStatus] = useState([         // No need to use state as we don't set it again once we have a value.
+  //   "Not Processed",
+  //   "Processing",              // Same as 'enum' from orderModel.js
+  //   "Shipped",
+  //   "Delivered",
+  //   "Cancelled",
+  // ]);
+
+  // const [changeStatus, setChangeStatus] = useState("");
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
 
@@ -43,10 +53,14 @@ const AdminOrders = () => {
   const handleChange = async (orderId, value) => {
     try {
       
-      const { data } = await axios.put(`/api/v1/auth/order-status/${orderId}`, {
+      // const { data } = await axios.put(`/api/v1/auth/order-status/${orderId}`, {            // 'data' isn't being used anyway
+      //   status: value,
+      // });
+
+      await axios.put(`/api/v1/auth/order-status/${orderId}`, {
         status: value,
       });
-      
+
       getOrders();    // Calling the function again to get the orders with the updated status
     } catch (error) {
       console.log(error);
@@ -101,7 +115,7 @@ const AdminOrders = () => {
                         </Select>
                       </td>
                       <td>{o?.buyer?.name}</td>
-                      <td>{moment(o?.createAt).fromNow()}</td>
+                      <td>{moment(o?.createdAt).fromNow()}</td>
                       <td>{o?.payment.success ? "Success" : "Failed"}</td>
                       <td>{o?.products?.length}</td>
                     </tr>

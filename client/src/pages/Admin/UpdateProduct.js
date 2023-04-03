@@ -127,7 +127,11 @@ const UpdateProduct = () => {
       
       if (!answer) return;
       
-      const { data } = await axios.delete(
+      // const { data } = await axios.delete(                // 'data isn't bing used'
+      //   `/api/v1/product/delete-product/${id}`
+      // );
+
+      await axios.delete(
         `/api/v1/product/delete-product/${id}`
       );
       
