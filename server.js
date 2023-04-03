@@ -44,7 +44,7 @@ app.get("/", (req, res) => {          // Commented out for deployment. Also in '
   res.send("<h1>Welcome!</h1>");
 });
 
-// app.use('*', function(req, res) {           // This is done for deployment after 'npm run build'
+// app.get('*', function(req, res) {           // This is done for deployment after 'npm run build'
 //   res.sendFile(path.join(__dirname, './client/build/index.html'));        // Setting the entry point file (index.html)
 // });
 
