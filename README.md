@@ -1,5 +1,7 @@
 # E-Commerce Website with MERN Stack
 
+#### _Click [here](https://estore-kki3.onrender.com/) to check out the deployed app_
+
 E-Store is a full-stack web application that was built using the MERN (MongoDB, Express, React, Node.js) stack.
 
 It is essentially an e-commerce website where users can browse products, add items to their cart, and checkout using BrainTree for payment processing.
@@ -7,8 +9,6 @@ It is essentially an e-commerce website where users can browse products, add ite
 The application also features a user authentication system that allows users to create an account and save their information for future purchases.
 
 ## Final Product
-
-###### Click [here](https://agreeable-frock-boa.cyclic.app/) to check out the deployed app
 
 ###### The following is a snippet of the admin dashboard and its functionalities. These functionalities are only accessible to the admins.
 
