@@ -7,7 +7,8 @@ import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
-//import path from "path";      // Comes with node.js. Done for deployment. ES module scope doesn't cover '__dirname'. Check 'server.js' in that OTHER repository for the fix. 
+// import path from "path";      // Comes with node.js. Done for deployment. ES module scope doesn't cover '__dirname'. Check 'server.js' in that OTHER repository for the fix. 
+// import { fileURLToPath } from "url";      // For resolving the error (ES module scope doesn't cover '__dirname') shown in cyclic
 
 
 //Configure env
@@ -16,15 +17,20 @@ dotenv.config();   // since .env file is in the root folder we don't need to def
 //Database config
 connectDB();
 
+// //ES module fix as '__dirname' is not defined in ES module scope and hence error was being shown in cyclic
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
 //Rest object
 const app = express();
 
 //Middelwares
 app.use(cors());
 app.use(express.json());  // enabling json so that we can send json data with 'req/res' (instead of 'body-parser')
-app.use(morgan("dev"));   // tells us abou the type of 'request (GET/POST etc.)' status code and how much time it took (in ms) for execution, in the terminal. Useful for debugging and will be removed in production
+app.use(morgan("dev"));   // tells us about the type of 'request (GET/POST etc.)' status code and how much time it took (in ms) for execution, in the terminal. Useful for debugging and will be removed in production
 
 // app.use(express.static(path.join(__dirname, './client/build')));      // For deployment. To set the path of the 'build' folder on client-side
+
 
 //Routes
 app.use("/api/v1/auth", authRoutes);

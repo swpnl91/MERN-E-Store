@@ -8,7 +8,7 @@ The application also features a user authentication system that allows users to 
 
 ## Final Product
 
-###### Click [here](https://easy-erin-zebra-shoe.cyclic.app/) to check out the deployed app
+###### Click [here](https://agreeable-frock-boa.cyclic.app/) to check out the deployed app
 
 ###### The following is a snippet of the admin dashboard and its functionalities. These functionalities are only accessible to the admins.
 
