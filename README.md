@@ -39,7 +39,7 @@ https://user-images.githubusercontent.com/91759275/229358156-e19a9b8e-4cb9-40af-
 - Currently, it also doesn't factor in products that are out of stock.
 - Pagination will also be added in future.
 - Using nodemailer to communicate with the users (for sending email confirmation link, OTPs etc.).
-- Functionality to add same product twice in a single order that makes it a single product and ony increases its quantity instead of making two separate entries.
+- Functionality to add same product twice in a single order that makes it a single product and only increases its quantity instead of making two separate entries.
 - Using Redux instead of React Context so that the handling of state changes, is quick and efficient.
 - Using Cloudinary to store images.
 
