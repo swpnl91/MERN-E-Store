@@ -2,6 +2,8 @@
 
 #### _Click [here](https://estore-kki3.onrender.com/) to check out the deployed app_
 
+###### _Please note that owing to the fact that the app is hosted on a shared web server there can be a delay in rendering the web pages/content. Please rest assured, as all the features of the app work as intended._
+
 E-Store is a full-stack web application that was built using the MERN (MongoDB, Express, React, Node.js) stack.
 
 It is essentially an e-commerce website where users can browse products, add items to their cart, and checkout using BrainTree for payment processing.
